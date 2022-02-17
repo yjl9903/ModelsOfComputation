@@ -193,7 +193,7 @@ pn = comp(
   comp(pow, two, comp(pow, two, P(1, 1))),
   P(1, 1)
 )
-# print('P_0 = ', pn(0)) # 2
-# print('P_1 = ', pn(1)) # 3
-# print('P_2 = ', pn(2)) # 5
+# print('P_0 =', pn(0)) # 2
+# print('P_1 =', pn(1)) # 3
+# print('P_2 =', pn(2)) # 5
 ```
