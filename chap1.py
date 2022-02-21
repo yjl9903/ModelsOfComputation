@@ -1,10 +1,5 @@
-# Introduciton to Models of Computation
+# Intial function
 
-## Chapter 1
-
-### Intial function
-
-```python
 def Z(): return 0
 
 def S(x): return x + 1
@@ -17,11 +12,8 @@ def P(n, i):
     assert len(vec) == n
     return vec[i - 1]
   return f
-```
 
-### Arithmetic function
-
-```python
+# Arithmetic function
 def diff(x, y):
   if x <= y:
     return y - x
@@ -39,11 +31,8 @@ def N2(x):
     return 1
   else:
     return 0
-```
 
-### Operator
-
-```python
+# Operator
 # ( (N^{m} -> N) x (N^n -> N)^m ) -> (N^{n} -> N)
 def comp(f, *gs):
   # m = len(gs)
@@ -82,41 +71,19 @@ def mu(f):
   return comp(diff, sigma(g), g)
 
 # (N^{k + 1} -> N) -> (N^{k + 1} -> N)
-def max(f):
-  k = f.__code__.co_argcount - 1
+def max(f, k=None):
+  if k == None:
+    k = f.__code__.co_argcount - 1
   
   h = comp(f, comp(diff, P(k + 2, 2), P(k + 2, 1)), *map(lambda i: P(k + 2, i), range(3, k + 3)))
   g = prod(comp(N2, h))
   t = comp(sigma(g), P(k + 1, 1), *map(lambda i: P(k + 1, i), range(1, k + 2)))
 
   return comp(diff, comp(diff, P(k + 1, 1), t), prod(comp(N2, f)))
-```
 
-### Examples
+# ----------
 
-Solve a quadratic equation in the range [0, n].
-
-```python
-def quadratic(i, a, b, c):
-  return a * i * i + b * i + c
-
-solve_l = mu(quadratic)
-solve_r = max(quadratic)
-
-print('n, a, b, c = ', end = '')
-n, a, b, c = map(int, input().split(' '))
-
-x1 = solve_l(n, a, b, c)
-x2 = solve_r(n, a, b, c)
-
-print('{} * x^2 + {} * x + {} = 0'.format(a, b, c))
-print('x_1 = {}'.format(x1))
-print('x_2 = {}'.format(x2))
-```
-
-Arithmetic.
-
-```python
+# Examples
 mul = comp(diff, sigma(P(2, 2)), P(2, 2))
 # print('3 x 4 =', mul(3, 4)) # 12
 
@@ -163,11 +130,7 @@ pow = comp(
 # print('2 ** 2 = ', pow(2, 2)) # 4
 # print('3 ** 3 = ', pow(3, 3)) # 27
 # print('4 ** 4 = ', pow(4, 4)) # 256
-```
 
-Number theory.
-
-```python
 tau = comp(
   sigma(comp(N, comp(rs, P(2, 2), P(2, 1)))),
   P(1, 1),
@@ -206,4 +169,17 @@ pn = comp(
 # print('P_0 =', pn(0)) # 2
 # print('P_1 =', pn(1)) # 3
 # print('P_2 =', pn(2)) # 5
-```
+
+h = comp(sub, comp(pi, comp(
+  max(comp(
+    add,
+    comp(comp(N2, comp(diff, tau, comp(S, comp(S, comp(Z))))), P(2, 1)),
+    comp(N2, comp(rs, P(2, 2), P(2, 1)))
+  ), k = 1),
+  P(1, 1),
+  P(1, 1)
+)), comp(S, comp(Z)))
+# print('h(0) =', h(0)) # 0
+# print('h(1) =', h(1)) # 0
+# print('h(2) =', h(2)) # 1
+# print('h(21) =', h(21)) # 4
