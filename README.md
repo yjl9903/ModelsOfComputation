@@ -1,6 +1,10 @@
 # Introduciton to Models of Computation
 
-## Chapter 1
++ Recursive Function: 向 Godel, Herband, Kleene 致敬
++ Lambda Calculus: 向 Church 致敬
++ Turing Machine: 向 Turing 致敬
+
+## Recursive function
 
 ### Intial function
 
