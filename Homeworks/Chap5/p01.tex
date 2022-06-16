@@ -1,0 +1,21 @@
+\begin{problem}
+构造机器计算函数 $f(x,y,z)=y$.
+\end{problem}
+
+\begin{solution}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 0R2 & 0R1 \\ \hline
+        2 & 0R3 & 1R2 \\ \hline
+        3 & 0L4 & 0R3 \\ \hline
+        4 & 0L4 & 1L5 \\ \hline
+        5 & 0R6 & 1L5 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.1}
+    \label{sol:5.1}
+\end{table}
+
+对于该机器, 定义见表\ref{sol:5.1}, 输入 $1 : 0\underset{\uparrow}{1^{x+1}}01^{y+1}01^{z+1}0\cdots$, 输出 $6 : 0^{x+3}\underset{\uparrow}{1^{y+1}}0\cdots$.
+\end{solution}

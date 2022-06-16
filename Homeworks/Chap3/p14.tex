@@ -1,0 +1,16 @@
+\begin{problem}
+证明: 设 $R$ 是 $\Lambda$ 上的一个二元关系, $M \in NF_R$, 则
+\begin{enumerate}
+\item 不存在 $N \in \Lambda$ 使得 $M \to_R N$;
+\item $M \twoheadrightarrow_R N \Rightarrow M \equiv N$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+\item 根据定义, 对于 $M \in NF_R$, $M$ 中不包含 R-redex 形式的子项, 因此不存在 $N \in \Lambda$ 使得 $M \to_R N$.
+\item 假设 $M \not\equiv N$, 根据题目 3.9 知存在序列 $P_0, \dots, P_n \in \Lambda$, 使得 $P \equiv P_0$, $Q \equiv P_n$, 且对于任何 $0 \le i < n$, $P_i \to_R P_{i+1}$ 或 $P_{i+1} \to_R P_{i}$. 因为 $M \not\equiv N$, 所以序列长度至少为 $1$, 即存在 $M \to_R N$ 或者 $N \to_R M$, 与本题第一问命题矛盾.
+
+综上 $M \twoheadrightarrow_R N \Rightarrow M \equiv N$.
+\end{enumerate}
+\end{solution}

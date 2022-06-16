@@ -1,0 +1,16 @@
+\begin{problem}
+证明：对于任意 $P, Q \in \Lambda$, 若 $P =_\beta Q$, 则存在 $n \ge 0$ 以及 $P_0, \dots, P_n \in \Lambda$, 满足
+\begin{enumerate}
+\item $P \equiv P_0$
+\item $Q \equiv P_n$
+\item 对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$ 或 $P_{i+1} \sreduceto P_{i}$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+根据定义知道 $=_\beta$ 为 $\sreduceto$ 的自反传递对称闭包, 于是
+\[
+=_\beta ~ = \bigcup_{i=0}^\infty (\sreduceto \cup \leftarrow_\beta)^i
+\]
+因为 $P =_\beta Q$, 所以存在 $n \in \mathbb{N}$, $P (\sreduceto \cup \leftarrow_\beta)^n Q$. 因此存在序列 $P_0, \dots, P_n \in \Lambda$, 使得 $P \equiv P_0$, $Q \equiv P_n$, 且对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$ 或 $P_{i+1} \sreduceto P_{i}$.
+\end{solution}

@@ -1,0 +1,21 @@
+\begin{problem}
+证明: 对于任何 $M, N \in \Lambda$, 若 $M =_\beta N$, 则存在 $T$ 使 $M \reduceto T$ 且 $N \reduceto T$. 这就是 $=_\beta$ 的 CR 性质.
+\end{problem}
+
+\begin{solution}
+设 $M =_\beta N$, 根据题目 3.9 可知, 存在序列 $P_0, \dots, P_n \in \Lambda$, 使得 $P \equiv P_0$, $Q \equiv P_n$, 且对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$ 或 $P_{i+1} \sreduceto P_{i}$.
+
+下面对 $i$ 作归纳证明, 存在 $T_i \in \Lambda$ 使得 $P_0 \reduceto T_i$ 且 $P_i \reduceto T_i$.
+
+奠基: 当 $i=0$ 时, 取 $T_0$ 为 $M$ 即可.
+
+归纳假设: 当 $i=k$ $(k < n)$ 时, 存在 $T_k \in \Lambda$ 使得 $P_0 \reduceto T_k$ 且 $P_k \reduceto T_k$.
+
+归纳步骤: 当 $i = k + 1$ 时, 由归纳假设知 $P_0 \reduceto T_k$ 且 $P_k \reduceto T_k$.
+
+情况 1: $P_k \sreduceto P_{k+1}$, 从而有 CR 性质, 存在 $T_{k+1}$ 满足 $T_k \reduceto T_{k+1}$ 且 $P_{k+1} \reduceto T_{k+1}$. 因为 $P_0 \reduceto T_k$, 所以 $P_0 \reduceto T_{k+1}$, 从而命题成立.
+
+情况 2: $P_{k+1} \sreduceto P_k$, 于是 $P_{k+1} \reduceto T_k$, 又 $P_0 \reduceto T_k$, 所以存在 $T_{k+1} \equiv T_k$, 命题成立.
+
+综上, 存在 $T_n$ 使得 $P_0 \reduceto T_n$ 且 $P_n \reduceto T_n$, 取 $T \equiv T_n$ 有 $M \reduceto T$ 且 $N \reduceto T$.
+\end{solution}

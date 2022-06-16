@@ -1,0 +1,15 @@
+\begin{problem}
+试找出 $A \in \Lambda^\circ$ 使 $A$ $\lambda-$ 定义函数 $f(x,y)=x+y$.
+\end{problem}
+
+\begin{solution}
+$A \equiv \lambdabstract{xyfz}{xf(yfz)}$, 于是
+\begin{align*}
+A \numeral{n} \numeral{m} & \equiv (\lambdabstract{xyfz}{xf(yfz)}) \numeral{n} \numeral{m} \\
+& =_\beta \lambdabstract{fz}{\numeral{n}f(\numeral{m}fz)} \\
+& =_\beta \lambdabstract{fz}{f^n(f^m z)} \\
+& = \lambdabstract{fz}{f^{n+m}z} \\
+& = \numeral{n+m}
+\end{align*}
+所以 $A$ $\lambda-$ 定义函数 $f(x,y)=x+y$.
+\end{solution}

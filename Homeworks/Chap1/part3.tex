@@ -1,0 +1,89 @@
+\newcommand{\Ack}{\operatorname{Ack}{}}
+
+\begin{problem}
+证明: $\Ack(4,n) \in \PRF - \EF$.
+\end{problem}
+
+\begin{solution}
+1. 证明 $\Ack(4, n) \in \PRF$.
+
+证明一个更强命题: 对于固定的 $i$, $f_i(n) = \Ack(i, n) \in \PRF$.
+
+奠基: $\Ack(0, n) = n + 1 \in \PRF$.
+
+归纳假设: 当 $i = k$ 时, $f_k(n) = \Ack(k, n) \in \PRF$.
+
+递推: $\Ack(k+1,0) = \Ack(k, 1)$, $\Ack(k+1, n+1) = \Ack(k, \Ack(k + 1, n))$, 因此可以构造 $f_{k+1} = h$:
+\begin{align*}
+h(0) & = f_k(1) \\
+h(n + 1) & = f_k(h(n))
+\end{align*}
+
+因为 $f_k \in \PRF$, 所以 $f_{k+1} = h \in \PRF$.
+
+因此 $Ack(4,n) = f_4(n) \in \PRF$.
+
+2. 证明 $\Ack(4, n) \not\in \EF$.
+
+根据上述归纳过程, 我们可以计算出 $\Ack(1, n), \Ack(2, n), \Ack(3, n), \Ack(4, n)$ 的具体形式.
+\begin{align*}
+\Ack(1, n) & = 2 + n \\
+\Ack(2, n) & = 2n + 3 \\
+\Ack(3, n) & = 2^{n+3} - 3 \\
+\Ack(4, n) & = \underbrace{2^{{.}^{{.}^{{.}^{2}}}}}_{n+3 ~ \text{个} ~ 2} - 3
+\end{align*}
+然后证明 $\Ack(4, n)$ 不能被 $G(k, n)$ 控制.
+
+反证法. 假设 $\Ack(4, n)$ 被 $G$ 控制, 则存在 $k_0 \in \N{}$, 使得 $\forall n \in \N{}$, $\Ack(4, n) \le G(k_0, n) = \underbrace{2^{{.}^{{.}^{{.}^{2^n}}}}}_{k_0 ~ \text{个} ~ 2}$.
+
+令 $n = k_0$, $\Ack(4, n) = \underbrace{2^{{.}^{{.}^{{.}^{2}}}}}_{k_0 + 3 ~ \text{个} ~ 2} - 3 > \underbrace{2^{{.}^{{.}^{{.}^{2^{k_0}}}}}}_{k_0 ~ \text{个} ~ 2}$, 矛盾.
+
+因此 $\Ack(4, n) \not\in \EF$.
+
+综上 $\Ack(4, ) \in \PRF - \EF$.
+\end{solution}
+
+\begin{problem}
+设 $f : \N{} \to \N{}$, $f$ 为一一映射, 证明: $f \in \GRF \Leftrightarrow f^{-1} \in \GRF$,
+\end{problem}
+
+\begin{solution}
+先证明充分性, $f \in \GRF \Rightarrow f^{-1} \in \GRF$. 构造
+\[
+f^{-1} = \mu_{y} [f(y) - x]
+\]
+因为 $f$ 是一一映射, 因此 $f(y) = x$ 的根 $y$ 必定是存在且唯一的.
+
+对于必要性, 因为 $(f^{-1})^{-1} = f$ 且 $f^{-1}$ 也是一一映射, 用类似上述构造容易证明.
+\end{solution}
+
+\begin{problem}
+设 $p(x)$ 为整系数多项式, 令 $f : \N{} \to \N{}$ 定义为 $f(a) = p(x) - a$ 对于 $x$ 的非负整数根, 证明: $f \in \RF$.
+\end{problem}
+
+\begin{solution}
+令 $p(x) = b_n x^n + b_{n-1}x^{n-1} + \dots + b_0$, 令 $S = \{ i ~ | ~ b_i \ge 0 \}$, $T = \{ i ~ | ~ b_i < 0 \}$. 于是
+\[
+p(x)-a = \sum_{i \in S} b_i x^i - (a + \sum_{i \in T} |b_i| x^i) \in \EF
+\]
+因此 $f = \mu_{x} [p(x) - a] \in \RF$.
+\end{solution}
+
+\begin{problem}
+设
+\[
+f(x,y) = \begin{cases}
+x / y, & \text{若} ~ y \neq 0 ~ \text{且} ~ y \mid x \\
+\uparrow, & \text{否则}
+\end{cases}
+\]
+证明: $f \in \RF$.
+\end{problem}
+
+\begin{solution}
+$f(x, y) = \mu_{k}. [x \dotdotminus k \times y] + \mu_{k}. [N(x + y)] \in \RF$.
+\end{solution}
+
+\input{./p-24.tex}
+
+\input{./p-25.tex}

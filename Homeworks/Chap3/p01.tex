@@ -1,0 +1,15 @@
+\begin{problem}
+证明括号引理: 对于任何 $M \in \Lambda$, 在 $M$ 中出现的左括号的个数等于在 $M$ 中出现的右括号的个数.
+\end{problem}
+
+\begin{solution}
+对 $M$ 的结构归纳.
+
+\begin{enumerate}
+\item $M \equiv x$ ($x \in \nabla$): $M$ 没有左右括号, 引理成立.
+\item $M \equiv (\lambdabstract{x}{N})$ ($x \in \nabla, N \in \Lambda$): 有归纳假设 $N$ 中的左右括号数量相同. $M$ 又引入了一对新的左右括号, 故 $M$ 中的左右括号数量仍然相同.
+\item $M \equiv (N_1 N_2)$ ($N_1, N_2 \in \Lambda$): 有归纳假设 $N_1, N_2$ 中的左右括号数量相同. $M$ 又引入了一对新的左右括号, 故 $M$ 中的左右括号数量仍然相同.
+\end{enumerate}
+
+证毕.
+\end{solution}

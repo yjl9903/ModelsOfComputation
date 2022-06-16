@@ -1,0 +1,66 @@
+\documentclass[UTF8, 12pt, a4paper, oneside]{ctexart}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm, amssymb, bm, commath, color, framed, graphicx, hyperref, mathrsfs}
+
+\title{\textbf{计算理论作业2}}
+\author{颜俊梁 MF21330103}
+\date{\today}
+
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{255, 255, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目3.\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\par}
+
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
+  \mathsurround=0pt$-$}}}
+\def\dotdotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{..}\hss\cr
+  \mathsurround=0pt$-$}}}
+
+\newcommand{\N}[1][]{\mathbb{N}^#1}
+\newcommand{\BNF}{\beta\text{-nf}}
+\newcommand{\lambdabstract}[2]{\lambda {#1}.\,{#2}}
+\newcommand{\sreduceto}{\rightarrow_\beta}
+\newcommand{\reduceto}{\twoheadrightarrow_\beta}
+\newcommand{\numeral}[1]{\left\ulcorner #1 \right\urcorner}
+\newcommand{\IF}{\mathcal{IF}}
+\newcommand{\BF}{\mathcal{BF}}
+\newcommand{\EF}{\mathcal{EF}}
+\newcommand{\PRF}{\mathcal{PRF}}
+\newcommand{\GRF}{\mathcal{GRF}}
+\newcommand{\RF}{\mathcal{RF}}
+
+\begin{document}
+
+\maketitle
+
+\input{p01.tex}
+\input{p02.tex}
+\input{p03.tex}
+\input{p04.tex}
+\input{p05.tex}
+\input{p06.tex}
+\input{p07.tex}
+\input{p08.tex}
+\input{p09.tex}
+\input{p10.tex}
+\input{p11.tex}
+\input{p12.tex}
+\input{p13.tex}
+\input{p14.tex}
+\input{p15.tex}
+\input{p16.tex}
+\input{p17.tex}
+\input{p18.tex}
+\input{p19.tex}
+\input{p20.tex}
+\input{p21.tex}
+\input{p22.tex}
+\input{p23.tex}
+\input{p24.tex}
+\input{p25.tex}
+
+\include{notes.tex}
+
+\end{document}

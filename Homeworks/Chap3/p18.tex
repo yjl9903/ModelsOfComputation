@@ -1,0 +1,15 @@
+\begin{problem}
+令 $D \equiv \lambdabstract{xyz}{z(Ky)x}$, 证明: 对于任意的 $X, Y \in \Lambda$,
+\begin{align*}
+DXY\numeral{0} & = X \\
+DXY\numeral{n+1} & = Y \\
+\end{align*}
+这里 $K \equiv \lambdabstract{xy}{x}$, $\numeral{n} \equiv \lambdabstract{fx}{f^nx}$.
+\end{problem}
+
+\begin{solution}
+
+第一, $D X Y \numeral{0} \equiv (\lambdabstract{xyz}{z(Ky)x}) X Y \numeral{0} \reduceto \numeral{0} (K Y) X = (\lambdabstract{fx}{x}) (K Y) X \reduceto X$.
+
+第二, $D X Y \numeral{n+1} \equiv (\lambdabstract{xyz}{z(Ky)x}) X Y \numeral{n+1} \reduceto \numeral{n+1} (K Y) X = (\lambdabstract{fx}{f^{n+1}x}) (K Y) X \reduceto ((K Y)^{n+1} X) = ((\lambdabstract{y}{Y})^{n+1} X) \reduceto Y$.
+\end{solution}

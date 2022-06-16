@@ -1,0 +1,21 @@
+\begin{problem}
+构造机器 \machine{$\text{copy}_1$} 使得 \machine{$\text{copy}_1$} | $0\underset{\uparrow}{1^x}0\cdots \twoheadrightarrow 01^x0\underset{\uparrow}{1^x}0\cdots$.
+\end{problem}
+
+\begin{solution}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 0R6 & 0R2 \\ \hline
+        2 & 0R3 & 1R2 \\ \hline
+        3 & 1L4 & 1R3 \\ \hline
+        4 & 0L5 & 1L4 \\ \hline
+        5 & 1R1 & 1L5 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.2}
+    \label{sol:5.2}
+\end{table}
+
+对于该机器, 定义见表\ref{sol:5.2}, 输入 $1 : 0\underset{\uparrow}{1^{x+1}}0\cdots$, 输出 $6 : 01^{x+1}0\underset{\uparrow}{1^{x+1}}0\cdots$.
+\end{solution}

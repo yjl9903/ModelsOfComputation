@@ -1,0 +1,19 @@
+\begin{problem}
+设机器 $M_1$ 定义如下表\ref{tab:5.5}, 对于输入 $\overline{x}$, 求输出.
+\end{problem}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 0L3 & 1R2 \\ \hline
+        2 & 0L3 & 0R1 \\ \hline
+        3 & 0L3 & 1L3 \\ \hhline
+    \end{tabularx}
+    \caption{题目 5.5}
+    \label{tab:5.5}
+\end{table}
+
+\begin{solution}
+输入 $\overline{x}$, 输出 $\underbrace{\overline{(0, 0, \dots, 0)}}_{\text{共 $\lceil \frac{x+1}{2} \rceil$ 个}}$.
+\end{solution}

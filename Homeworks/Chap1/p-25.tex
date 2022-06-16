@@ -1,0 +1,15 @@
+\begin{problem}
+设 $f : \N{} \to \N{}$ 定义为
+\[
+f(n) = \text{$\pi$ 的十进制展开式中第 $n$ 位数字}
+\]
+例如 $f(0)=3, f(1)=1,f(2)=4$, 证明: $f \in \GRF$.
+\end{problem}
+
+\begin{solution}
+Leibniz 公式 $\frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots$.
+
+定义 $L(n,k)$ 表示 Leibniz 公式的前 $n+1$ 项和乘 $k$ 下取整的值, $L(n,k) = \sum_{i=0}^n (-1)^{i} \frac{k}{2i+1} = \big (\sum_{i=0}^n N(rs(i, 2)) \cdot \frac{k}{2i+1} \big) - \big(\sum_{i=0}^n rs(i, 2) \cdot \frac{k}{2i+1} \big) \in \EF$.
+
+所以, $f(n) = rs(L(100^n, 4 \cdot 10^n), 10)$.
+\end{solution}

@@ -1,0 +1,16 @@
+\begin{problem}
+证明：对于任意 $P, Q \in \Lambda$, 若 $P \reduceto Q$, 则存在 $n \ge 0$ 以及 $P_0, \dots, P_n \in \Lambda$, 满足
+\begin{enumerate}
+\item $P \equiv P_0$
+\item $Q \equiv P_n$
+\item 对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+根据定义, $\reduceto$ 是 $\sreduceto$ 的自反传递闭包, 即
+\[
+\reduceto = \bigcup_{i=0}^\infty (\sreduceto)^i
+\]
+因为 $P \reduceto Q$, 所以存在 $n \in \mathbb{N}$, 使得 $P (\sreduceto)^n Q$, 也就是存在这样的序列 $p \equiv P_0 \sreduceto P_1 \sreduceto \dots \sreduceto P_n \equiv Q$, 满足 $P \equiv P_0$, $Q \equiv P_n$, 对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$.
+\end{solution}

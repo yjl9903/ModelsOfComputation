@@ -1,0 +1,295 @@
+\begin{problem}
+证明: 对于固定的 $k \in \N{}$, $x + k \in \BF$.
+\end{problem}
+
+\begin{solution}
+对 $k$ 归纳, 记一元数论函数 $x+k$ 为 $f_k$.
+
+奠基: 当 $k = 0$, 有 $f_0 = P^1_1 \in \EF$.
+
+归纳假设: 当 $k = i$ 时有 $f_i \in \EF$. 
+
+那么 $f_{i + 1} = S \circ f_i \in \EF$.
+\end{solution}
+
+所以, 对于固定的 $k \in \N{}$, $x + k \in \BF$.
+
+\begin{problem}
+证明: 对任意 $k \in \N{+}$, $f \in \N{k} \to \N{}$, 则存在 $h \in \N{}$ 使得
+
+\[f(\vec{x}) < \norm{\vec{x}} + h\]
+
+其中 $\norm{\vec{x}} = \max \{ x_i : 1 \le i \le k \}$.
+\end{problem}
+
+\begin{solution}
+对 $f$ 结构归纳.
+
+当 $f \in \IF$ 时:
+
+\begin{enumerate}
+    \item 若 $f = Z$, 存在 $h = 1$, $f(x) = 0 < 1 < x + 1$;
+    \item 若 $f = S$, 存在 $h = 2$, $f(x) = x + 1 < x + 2$;
+    \item 若 $f = P_i^n$, 存在 $h = 1$, $$f(x_1, x_2, \dots, x_n) = x_i < \max \{ x_i : 1 \le i \le n \} + 1$$
+\end{enumerate}
+
+当 $f_{i + 1} = \comp{n}{m}{f_i, g_1, g_2, \dots, g_m}$ 时, 其中 $f_i, g_1, g_2, \dots, g_m \in \BF$.
+
+根据归纳假设有 $f_{i}(\vec{x}) < \norm{\vec{x}} + h_f$, $g_1(\vec{x}) < \norm{\vec{x}} + h_1$, $g_2(\vec{x}) < \norm{\vec{x}} + h_2$, $\cdots$, $g_m(\vec{x}) < \norm{\vec{x}} + h_m$.
+
+\begin{align}
+    f_{i+1}(\vec{x}) & = f_{i}(g_1(\vec{x}), g_2(\vec{x}), \dots, g_m(\vec{x})) \notag \\
+    & < \max ~ \{ ~ g_i(\vec{x}) : 1 \le i \le m ~ \} + h_f \notag \\
+    & = \max ~ \{ ~ \norm{\vec{x}} + h_i : 1 \le i \le m ~ \} + h_f \notag \\
+    & = \norm{\vec{x}} + (\max ~ \{ ~ h_i : 1 \le i \le m ~ \} + h_f) \notag
+\end{align}
+
+令 $h = \max ~ \{ ~ h_i : 1 \le i \le m ~ \} + h_f$, 有 $f_{i+1}(\vec{x}) < \norm{\vec{x}} + h$.
+\end{solution}
+
+\begin{problem}
+证明: 二元数论函数 $x + y \not\in \BF$.
+\end{problem}
+
+\begin{solution}
+反证法.
+
+假设 $x + y \in \BF$, 根据 1.2 的引理, 存在 $h \in \N{}$, 满足 $\forall x, y \in \N{}. ~ x + y < \max \{ x, y \} + h$. 注意到这样任意大的 $h$ 并不存在, 矛盾.
+\end{solution}
+
+\begin{problem}
+证明: 二元数论函数 $x \dotminus y \not\in \BF$.
+\end{problem}
+
+\begin{solution}
+首先证明一个引理, 对于任何 $f \in \N{k} \to \N{}, \vec{x} \in \N{k}$, $f(\vec{x})$ 的值至多与 $\vec{x}$ 当中的一维有关. 形式化地, 存在 $a, b \in \N{}$, 要么 $f = \comp{k}{2}{+, Z \circ S^{b}, P_{a}^{k}}$, 要么 $f = Z \circ S^{b}$.
+
+对 $f$ 作结构归纳. 奠基, 显然当 $f \in \IF$ 时, 均满足以上形式.
+
+假设 $f_0, f_1, f_2, \dots, f_k \in \BF$ 都至多与输入中的某一维有关, 且 $f_0 \in \N{k} \to \N{}$, $f_1, f_2, \dots, f_k \in \N{m} \to \N{}$. 于是, $f_{k+1} = \comp{m}{k}{f_0, f_1, f_2, \dots, f_k}$, 根据归纳假设, $f_0$ 的结果只会至多与 $f_1, f_2, \dots, f_k$ 中的某一个有关, 而这 $k$ 个函数也只会与输入的至多某一维有关, 因此 $f_{k+1}$ 也满足以上形式.
+
+回到原题, 有了以上引理, 我们注意到二元数论函数 $x \dotminus y$ 的结果会与输入的两个维度均有关, 因此 $x \dotminus y \not\in \BF$.
+
+% 注意到只需要证明一元数论函数 $x \dotminus 1 \not\in \BF$. 假设 $x \dotminus y \in \BF$, 固定 $y = 1$ 将会与 $x \dotminus 1 \not\in \BF$ 矛盾.
+
+% 下面证明 $x \dotminus 1 \not\in \BF$.
+
+% 反证法. 假设 $f(x) = x \dotminus 1$, $f \in \BF$, 那么存在它的最短构造序列 $f_0, f_1, \dots, f_n$. 对于 $f_n$ 有两种情况.
+
+% 情况 1. $f_n \in \IF$, 容易验证 $f = P$, $f = S$, $f = P^1_1$ 均不是期望的减 $1$ 函数.
+
+% 情况 2. $f_n$ 是由 $\IF$ 复合而来. 
+
+% 若 $f_n = \comp{k}{1}{Z, f_j}$ ($0 \le j < n$), 但是 $\forall x \in \N{}. Z(x) = 0$ 与 $f(2) = 1$ 矛盾.
+
+% 若 $f_n = \comp{k}{1}{S, f_j}$ ($0 \le j < n$), 但是 $\forall x \in \N{}. S(x) > 0$ 与 $f(1) = 0$ 矛盾.
+
+% 若 $f_n = \comp{k}{m}{P^m_{l}, f_{j_1}, f_{j_2}, \dots, f_{j_m}}$ ($0 \le j_1, j_2, \dots, j_m < n$), 这与构造序列是最短的矛盾.
+\end{solution}
+
+\begin{problem}
+设 $pg(x, y) = 2^x(2y + 1) - 1$.
+
+证明: 存在初等函数 $K(x)$ 和 $L(x)$ 使得
+\begin{align*}
+K(pg(x, y)) = x \\
+L(pg(x, y)) = x \\
+pg(K(z), L(z)) = z    
+\end{align*}
+\end{problem}
+
+\begin{solution}
+\begin{align*}
+K(z) & = ep(0, z + 1) \\
+L(z) & = \text{div}(\Big \lfloor \frac{z+1}{2^{K(z)}} \Big \rfloor - 1, 2) \\
+pg(K(z), L(z)) & = 2^{ep(0, z + 1)} (2 \times \text{div}(\Big \lfloor \frac{z+1}{2^{K(z)}} \Big \rfloor - 1, 2) + 1) - 1 \\
+& = 2^{ep(0, z + 1)} \Big \lfloor \frac{z+1}{2^{ep(0, z + 1)}} \Big \rfloor - 1 \\
+& = z
+\end{align*}
+
+说明: 上述计算中的取整函数都是不必要的. 因为根据算术基本定理，任意正整数 $n$ 可以写成 $n = 2^l \cdot b$ ($l \in \N{}, b \in \N{+}, 2 \nmid b$) 的形式, 于是 $\Big \lfloor \frac{z+1}{2^{K(z)}} \Big \rfloor$ 就是将 $z + 1$ 的因子 $2$ 全部除掉，其结果是一个奇数.
+\end{solution}
+
+\begin{problem}
+设 $f : \N{} \to \N{}$, 证明: $f$ 可以作为配对函数的 $K$ 函数, 当且仅当对于任何 $i \in \N{}$,
+
+\[
+|\{ x \in \N{} : f(x) = i \}| = \aleph_0
+\]
+\end{problem}
+
+\begin{solution}
+先证明, $f$ 可以作为配对函数的 $K$ 函数 $\Longrightarrow$ $\forall i \in \N{}. |\{ x \in \N{} : f(x) = i \}| = \aleph_0$.
+
+反证法.
+
+存在 $i \in \N{}$ 使得 $\{ x \in \N{} : f(x) = i \}$ 与自然数集不等势. 也就是 $|\{ y \in \N{} : f(pg(i, y)) = i \}|$ 与自然数集不等势, 即它是自然数的一个有限子集. 那么必定存在 $y_1 \neq y_2 \in \N{}$ 满足 $z = pg(i, y_1) = pg(i, y_2)$, 不妨设 $L(z) = y_1$, 那么 $L(pg(x,y_2)) = L(z) = y_1 \neq y_2$ 矛盾.
+
+再证明, $\forall i \in \N{}. |\{ x \in \N{} : f(x) = i \}| = \aleph_0$ $\Longrightarrow$ $f$ 可以作为配对函数的 $K$ 函数.
+
+根据 $\aleph_0$ 的定义，可知 $\{ x \in \N{} : f(x) = i \}$ 和 $\N{}$ 之间存在一一映射，不妨设为 $f_i : \{ x \in \N{} : f(x) = i \} \to \N{}$，也相应存在逆映射 $f_i^{-1} : \N{} \to \{ x \in \N{} : f(x) = i \}$.
+
+于是有对于任意的 $y \in \N{}$, $z = f_i^{-1}(y) \in \{ x \in \N{} : f(x) = i \}$, 因此 $f(z) = i$, $f(f_i^{-1}(y)) = i$.
+
+构造 $pg(x, y) = f_x^{-1}(y)$, $L(z) = f_{K(z)}(z)$, 有
+\begin{align*}
+K(pg(x, y)) & = f(f_x^{-1}(y)) = x \\
+L(pg(x, y)) & = f_{K(pg(x, y))}(f_x^{-1}(y)) = f_{x}(f_x^{-1}(y)) = y
+\end{align*}
+\end{solution}
+
+\newpage
+
+\begin{problem}
+从本原函数出发, 经复合和算子 $\prod_{i=n}^m [\cdot]$ 可以生成所有的初等函数.
+
+\[
+\prod_{i=n}^m [f(i)] = \begin{cases}
+f(n) \cdot f(n + 1) \cdot \dots \cdot f(m) & \text{若} ~ m \ge n \\
+1 & \text{若} ~ m < n
+\end{cases}
+\]
+\end{problem}
+
+\begin{solution}
+根据 \textbf{引理 1.12}, 只需要构造出绝对差函数和有界叠加算子即可.
+
+首先, 构造一些工具函数.
+\begin{align*}
+N(x) & = \prod_{i=1}^x Z(i) \\
+\operatorname{leq}(x, y) & = \prod_{i=x}^y Z(i) \\
+\operatorname{geq}(x, y) & = \prod_{i=y}^x Z(i) \\
+\end{align*}
+通过幂运算构造相等函数 (当 $x = 0, k > 1$ 时, $\operatorname{pow}(x, k) = 0$).
+\begin{align*}
+\operatorname{pow}(x, k) & = \prod_{i = 1}^k x \\
+\operatorname{eq}(x, y) & = \operatorname{pow}(\operatorname{leq}(x, y), N(\operatorname{geq}(x, y)))
+\end{align*}
+通过 $\log$ 运算构造有界叠加算子.
+\begin{align*}
+\log(x) & = \prod_{i = 0}^x \operatorname{pow}(i, N(\operatorname{eq}(2^i, x))) \\
+\sum_{i = n}^m f(i, \vec{y}) & = \log \prod_{i = n}^m \operatorname{pow}(2, f(i, \vec{y}))
+\end{align*}
+最后, $x \dotdotminus y = (\sum\limits_{i = x + 1}^y 1) + (\sum\limits_{i = y + 1}^x 1)$.
+\end{solution}
+
+\begin{problem}
+设
+
+\[
+M(x) = \begin{cases}
+M(M(x + 11)) & \text{若} ~ x \le 100 \\
+x - 10 & \text{若} ~ x > 100
+\end{cases}
+\]
+
+证明:
+
+\[
+M(x) = \begin{cases}
+91 & \text{若} ~ x \le 100 \\
+x - 10 & \text{若} ~ x > 100
+\end{cases}
+\]
+\end{problem}
+
+\begin{solution}
+当 $90 \le x \le 100$, $M(x) = M(M(x + 11))$, 而 $x + 1 > 100$, $M(x + 11) = x + 1$, $M(x) = M(x + 1)$. 因此, $M(90) = M(91) = \dots = M(100) = M(101) = 91$.
+
+% 对 $x < 90$ 分段进行倒序归纳, 可以证明 $\forall x \le 100. ~ M(x) = 91$.
+
+当 $0 \le x < 90$, 存在 $k \in \N{}$, 使得 $x + 11k \in [90, 100]$ (区间 $[90, 100]$ 内有 $11$ 个数). 从而 $M(x) = M(M(x + 11)) = M^2(x + 1 \cdot 11) = \dots = M^{k+1}(x + k \cdot 11) = M^k(M(x + k \cdot 11)) = M^K(91) = 91$.
+\end{solution}
+
+\begin{problem}
+证明:
+\begin{align*}
+\min_{x \le n}. [f(x, \vec{y})] & = n \dotminus \max_{x \le n}. [f(n \dotminus x, \vec{y})] \\
+\max_{x \le n}. [f(x, \vec{y})] & = n \dotminus \min_{x \le n}. [f(n \dotminus x, \vec{y})]
+\end{align*}
+\end{problem}
+
+\begin{solution}
+情况 1. 没有 $0 \le x \le n$ 满足 $f(x, \vec{y}) = 0$，那么
+\begin{align*}
+  \min_{x \le n}. [f(x, \vec{y})] & = \min_{x \le n}. [f(n \dotminus x, \vec{y})] = n \\
+  \max_{x \le n}. [f(x, \vec{y})] & = \max_{x \le n}. [f(n \dotminus x, \vec{y})] = 0
+\end{align*}
+成立.
+
+情况 2. 令 $a = \min_{x \le n}. [f(x, \vec{y})]$. 因此对于任意的 $x < a$, $f(x, \vec{y}) \neq 0$, 也就是任意的 $x' = n - x > n - a$, $f(x', \vec{y}) \neq 0$. 根据 max-算子的定义, $\max_{x \le n}. [f(n \dotminus x, \vec{y})] = n - a$, 第一行等式成立. 类似地，根据对称性可以证明第二行等式也成立.
+
+\end{solution}
+
+\begin{problem}
+证明: $\EF$ 对有界 max-算子封闭.
+\end{problem}
+
+\begin{solution}
+对于任意 $f \in EF$,
+\[
+\max_{x \le n} ~ [f(x, \vec{y})] = n \dotdotminus \sum_{i = 0}^n \Big \{ \prod_{j=0}^i [ N^2(f(n - j, \vec{y})) ] \Big \} \dotdotminus \prod_{j=0}^i [ N^2(f(j, \vec{y})) ]
+\]
+
+具体地,
+\begin{align*}
+\max_{x \le n} ~ [f] & = \comp{k+1}{2}{\dotdotminus, \comp{k+1}{2}{\dotdotminus, P^{k+1}_1, \prod_{j=0}^n \{ N^2 \circ f \} }, h} \\
+h & = \comp{k+1}{k+2}{\sum_{i=0}^n [g], P^{k+1}_1, P^{k+1}_1, P^{k+1}_2, \dots, P^{k+1}_{k+1}} \\
+g & = \prod_{j=0}^i \Big \{ N^2 \circ \comp{k+2}{k+1}{f, \comp{k+2}{2}{\dotminus, P^{k+2}_2, P^{k+2}_1}, P^{k+2}_{3}, \dots, P^{k+2}_{k+2}} \Big \}
+\end{align*}
+\end{solution}
+
+\begin{problem}
+Euler 函数 $\varphi : \N{} \to \N{}$ 定义为
+
+\[
+\varphi(n) = | \{ x : 1 \le x \le n \land \gcd(x, n) = 1 \} |
+\]
+
+证明: $\varphi \in \EF$.
+\end{problem}
+
+\begin{solution}
+根据算术基本定理, $n = p_0^{a_0} \times p_1^{a_1} \times \dots p_l^{a_l}$ ($a_0, a_1, \dots a_l \ge 1$), 于是有
+
+\[
+\varphi(n) = \prod_{i=0}^l p_i^{a_i - 1} (p_i - 1)
+\]
+
+构造
+\begin{align*}
+\varphi(n) & = \Big \lfloor \frac{n}{f(n)} \Big \rfloor \times g(n) \\
+f(n) & = \prod_{i = 0}^n [\operatorname{check}(i, n) \times i + N(\operatorname{check}(i, n))] \\
+g(n) & = \prod_{i = 0}^n [\operatorname{check}(i, n) \times (i \dotminus 1) + N(\operatorname{check}(i, n))] \\
+\tau(x) & = \sum_{i = 0}^x [ N(\operatorname{rs}(x, i)) ] \\
+\operatorname{prime}(x) & = N^2( \tau (x) \dotdotminus 2 ) \\
+\operatorname{check}(i, n) & = \operatorname{prime}(i) \times N^2(i \dotminus 1) \times N(rs(n, i))
+\end{align*}
+\end{solution}
+
+\begin{problem}
+设 $h(x)$ 为 $x$ 的最大素因子下标, 约定 $h(0) = 0$, $h(1) = 0$.
+
+证明: $h \in \EF$.
+\end{problem}
+
+\begin{solution}
+构造一:
+\[
+h(x) = \pi(\max_{i \le x}. \Big \{ \operatorname{prime}(i) + N^2(\operatorname{rs}(x, i)) \Big \}) \dotminus 1
+\]
+
+其中
+\begin{align*}
+\tau(x) & = \sum_{i = 0}^x [ N(\operatorname{rs}(x, i)) ] \\
+\operatorname{prime}(x) & = N^2( \tau (x) \dotdotminus 2 ) \\
+\pi(x) & = \sum_{i=0}^x \operatorname{prime}(i)
+\end{align*}
+
+构造二:
+\[
+h(n) = \max_{x \le n} [N(\operatorname{ep}(x, n))]
+\]
+
+其中 $\max$ 算子的上界为 $n$, 因为 $p(n) \gg n$.
+\end{solution}

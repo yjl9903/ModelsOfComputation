@@ -1,0 +1,96 @@
+\documentclass[UTF8, 12pt, a4paper, oneside]{ctexart}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm, amssymb, bm, commath, color, framed, graphicx, hyperref, mathrsfs, tcolorbox, tabularx}
+\usepackage{geometry}
+\usepackage{float}
+\geometry{a4paper,left=2.1cm,right=2.1cm,top=2.97cm,bottom=2.97cm}
+
+\title{\textbf{计算理论作业3}}
+\author{颜俊梁 MF21330103}
+\date{\today}
+
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{255, 255, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目5.\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\par}
+
+\newcommand{\N}[1][]{\mathbb{N}^#1}
+\newcommand{\BNF}{\beta\text{-nf}}
+\newcommand{\lambdabstract}[2]{\lambda {#1}.\,{#2}}
+\newcommand{\sreduceto}{\rightarrow_\beta}
+\newcommand{\reduceto}{\twoheadrightarrow_\beta}
+\newcommand{\numeral}[1]{\left\ulcorner #1 \right\urcorner}
+\newcommand{\IF}{\mathcal{IF}}
+\newcommand{\BF}{\mathcal{BF}}
+\newcommand{\EF}{\mathcal{EF}}
+\newcommand{\PRF}{\mathcal{PRF}}
+\newcommand{\GRF}{\mathcal{GRF}}
+\newcommand{\RF}{\mathcal{RF}}
+
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
+  \mathsurround=0pt$-$}}}
+\def\dotdotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{..}\hss\cr
+  \mathsurround=0pt$-$}}}
+
+\tcbset{colframe=black,colback=white,colupper=black,
+fonttitle=\bfseries,nobeforeafter,center title,size=small}
+\tcbset{tcbox raise base}
+\newtcbox{\machine}{on line,
+arc = 0pt, outer arc = 0pt,
+colback = white!10!white, colframe = black!50!black,
+boxsep = 0pt, left = 4pt, right = 4pt, top = 4pt, bottom = 4pt, boxrule = 1pt}
+
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 %
+\futurelet\reserved@a\@xhline}
+\makeatother
+
+\newcommand{\hhline}{\hlinewd{1pt}}
+\newcommand{\concat}{\mapstochar\Rightarrow}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\newcommand{\rwhead}[1]{\underset{\uparrow}{#1}}
+\newcommand{\copymachine}[1]{\machine{$\text{copy}_#1$}}
+\newcommand{\compressmachine}{\machine{$\text{compress}$}}
+\newcommand{\shiftlmachine}{\machine{$\text{shiftl}$}}
+\newcommand{\shiftrmachine}{\machine{$\text{shiftr}$}}
+\newcommand{\erasemachine}{\machine{$\text{erase}$}}
+\newcommand{\pangle}[1]{\left \langle #1 \right \rangle}
+
+\begin{document}
+
+\maketitle
+
+\input{p01.tex}
+\input{p02.tex}
+\input{p03.tex}
+\input{p04.tex}
+\input{p05.tex}
+\input{p06.tex}
+\input{p07.tex}
+\input{p08.tex}
+\input{p09.tex}
+\input{p10.tex}
+\input{p11.tex}
+\input{p12.tex}
+\input{p13.tex}
+\input{p14.tex}
+\input{p15.tex}
+\input{p16.tex}
+\input{p17.tex}
+\input{p18.tex}
+\input{p19.tex}
+\input{p20.tex}
+
+\begin{problem}
+什么是 Church-Turing Thesis?
+\end{problem}
+
+\begin{solution}
+直觉能行可计算 (部分) 函数类等同于 Turing-可计算 (部分) 函数类.
+\end{solution}
+
+\end{document}

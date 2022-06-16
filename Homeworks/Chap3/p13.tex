@@ -1,0 +1,15 @@
+\begin{problem}
+证明: 若在形式系统 $\lambda\beta$ 中加入下述公理:
+\[
+(A) ~ ~ \lambdabstract{xy}{x} = \lambdabstract{xy}{y}
+\]
+则对于任何 $M, N \in \Lambda$, $\lambda\beta + (A) \vdash M = N$.
+\end{problem}
+
+\begin{solution}
+根据公理 $A$, $\lambdabstract{xy}{x} = \lambdabstract{xy}{y}$, 对于任意 $M, N \in \Lambda$, 使用两次 $\upsilon$ 公理有 $(\lambdabstract{xy}{x}) M N = (\lambdabstract{xy}{y}) M N$.
+
+对于左边, 使用两次 $\beta$ 公理 $(\lambdabstract{xy}{x}) M N = M$. 对于右边, $(\lambdabstract{xy}{y}) M N = N$. 然后使用公理 $\tau$, 有 $M = N$.
+
+因此对于任何 $M, N \in \Lambda$, $\lambda\beta + (A) \vdash M = N$.
+\end{solution}

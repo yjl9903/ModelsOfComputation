@@ -1,0 +1,7 @@
+\begin{problem}
+证明: 对任何 $M, N \in \Lambda^\circ$, 方程 $xN=Mx$ 对于 $x$ 有解.
+\end{problem}
+
+\begin{solution}
+令 $x = \lambdabstract{z}{T}$ ($z \not\in \operatorname{FV}(T)$), 于是 $xN \to_\beta T$, 现在解方程 $T=M(\lambdabstract{z}{T})$. 对右边进行 $\lambda$ 抽象 $T = (\lambdabstract{y}{M(\lambdabstract{z}{y})})T$, 因此 $T = \Theta(\lambdabstract{y}{M(\lambdabstract{z}{y})})$, 所以 $x = \lambdabstract{z}{\Theta(\lambdabstract{y}{M(\lambdabstract{z}{y})})}$.
+\end{solution}

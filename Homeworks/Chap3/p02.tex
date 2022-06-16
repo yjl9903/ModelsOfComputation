@@ -1,0 +1,21 @@
+\begin{problem}
+试求 $SSSS$ 的 $\beta$-nf.
+\end{problem}
+
+\begin{solution}
+标准组合子 $S = \lambdabstract{xyz}{xz(yz)}$.
+\begin{align*}
+~ & S S S S \\
+\to_{\beta} ~ & (\lambdabstract{xyz}{xz(yz)}) S S S \\
+\to_{\beta} ~ & S S (S S) \\
+= ~ & (\lambdabstract{xyz}{xz(yz)}) S (S S) \\
+\to_{\beta} ~ & \lambdabstract{z}{S z (S S z)} \\
+= ~ & \lambdabstract{z}{(\lambdabstract{xyz}{xz(yz)}) z (S S z)} \\
+\to_{\beta} ~ & \lambdabstract{z}{\lambdabstract{l}{zl(S S z l)}} \\
+= ~ & \lambdabstract{z}{\lambdabstract{l}{zl((\lambdabstract{xyz}{xz(yz)})Szl)}} \\
+\to_{\beta} ~ & \lambdabstract{z}{\lambdabstract{l}{zl(Sl(zl))}} \\
+= ~ & \lambdabstract{z}{\lambdabstract{l}{zl((\lambdabstract{xyz}{xz(yz)})l(zl))}} \\
+\to_{\beta} ~ & \lambdabstract{z}{\lambdabstract{l}{zl(\lambdabstract{k}{lk(zlk)})}}
+\end{align*}
+
+\end{solution}

@@ -1,0 +1,28 @@
+\begin{problem}
+构造机器计算函数 $f(x,y) = x \dotminus y$.
+\end{problem}
+
+\begin{solution}
+对于该机器, 定义见表\ref{sol:5.11}, 输入 $1 : 01^{x+1}01^{y+1}0\cdots$, 在 $x \le y$ 时, 输出 $13 : 0^{x+y+4}\rwhead{1}0\cdots$, 在 $x > y$ 时输出 $13 : 0^{y+2}1^{x-y+1}0\cdots$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0    & 1   \\ \hline
+        1 &      & 0R2 \\ \hline
+        2 & 0R8  & 1R3 \\ \hline
+        3 & 0R4  & 1R3 \\ \hline
+        4 & 0R4  & 0R5 \\ \hline
+        5 & 0L10 & 1L6 \\ \hline
+        6 & 0L6  & 1L7 \\ \hline
+        7 & 0R1  & 1L7 \\ \hline
+        8 & 0R8  & 0R9 \\ \hline
+        9 & 1O13 & 0R9 \\ \hline
+       10 & 0L10 & 1R11 \\ \hline
+       11 & 1L12 &      \\ \hline
+       12 & 0R13 & 1L12 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.11}
+    \label{sol:5.11}
+\end{table}
+\end{solution}

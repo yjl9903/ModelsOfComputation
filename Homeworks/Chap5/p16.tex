@@ -1,0 +1,27 @@
+\begin{problem}
+证明引理 5.25 中的函数 $e(m,l)$ 为一般递归函数.
+\end{problem}
+
+\begin{solution}
+令 $m = \sharp M$, $l = \sharp_t A$, 从而先定义 3 个关于 $l$ 的函数, $j=j(l)=(l)_0$, $k=k(l)=(l)_1$, $a_j = a_j(l) = \begin{cases}1 & \text{if } (l)_{j+1} = 1 \\ 0 & \text{if } (l)_{j+1} = 2\end{cases} = 2 \dotminus (l)_{j+1}$.
+
+易见 $j(l), k(l), a_j(l)$ 皆为初等函数.
+
+令 $M$ 的第 $i$ 行为 \machine{$j$ | $xyz$ | $uvw$}, 从而 $\sharp x = \sharp x(m,l)$, $\sharp y = \sharp y(m,l), \dots, \sharp w = \sharp w(m,l)$ 皆为关于 $m,l$ 的初等函数.
+
+因为 $M(A)$ 有定义 $\Leftrightarrow$ $(j,k) : A$ 关于 $M$ 有后继 $\Leftrightarrow$ $(a_j,k) \in \operatorname{Dom}(M)$ 且 $j+p(a_j,k) \ge 1$ $\Leftrightarrow$ \begin{align*}
+     & [a_j = 0 \to ((x,y,z \text{ 不皆为 } L) \land (y = L \to j - 1 \ge 1))] \\
+\lor & [a_j = 1 \to ((u,v,w \text{ 不皆为 } R) \land (v = L \to j - 1 \ge 1))] \\
+\end{align*}
+所以, $M(A)$ 有定义为 $(m,l)$ 的初等谓词. 故其特征函数 $\chi(m,l) \in \EF$.
+
+函数 $d(m,l) = N(\chi(m,l))$ 为初等的, 下面作 $e(m,l)$:
+
+因为 \begin{align*}
+\sharp d(a_j,k) & = \begin{cases}\sharp x & a_j = 0 \\ \sharp u & a_j = 1 \end{cases} = \sharp x \cdot N(a_j) + \sharp u \cdot N^2(a_j) \\ 
+\sharp p(a_j,k) & = \sharp y \cdot N(a_j) + \sharp v \cdot N^2(a_j) \\
+\sharp s(a_j,k) & = \sharp z \cdot N(a_j) + \sharp w \cdot N^2(a_j) \\
+\end{align*}
+
+所以令 $e(m,l) = d(m,l) \times \pangle{\sharp d(a_j,k), \sharp p(a_j,k), \sharp s(a_j, k)} \in \EF$.
+\end{solution}

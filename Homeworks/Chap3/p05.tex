@@ -1,0 +1,15 @@
+\begin{problem}
+证明二元不动点定理: 对于任何 $F, G \in \Lambda$, 存在 $X, Y \in \Lambda$, 满足
+\begin{align}
+F X Y & = X \\
+G X Y & = Y
+\end{align}
+\end{problem}
+
+\begin{solution}
+消元法, 对于 (2) 式 $GXY = Y$, 有 $Y = \Theta (G X)$. 将其带入 (1) 式, 有 $F X (\Theta (G X)) = X$. 对左边进行 $\lambda$ 抽象, $(\lambda z. F z (\Theta (G z))) X = X$. 所以有解
+\begin{align*}
+    X = & \Theta (\lambda z. F z (\Theta (G z))) \\
+    Y = & \Theta (G (\Theta (\lambda z. F z (\Theta (G z)))))
+\end{align*}
+\end{solution}

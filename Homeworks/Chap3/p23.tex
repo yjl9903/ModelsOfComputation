@@ -1,0 +1,20 @@
+\begin{problem}
+设 $f(n)$ 为题目 1.16 中定义的函数, 试构造 $F \in \Lambda^\circ$ 使 $F \numeral{n} = \numeral{f(n)}$, 对于 $n \in \mathbb{N}^+$ 成立.
+\end{problem}
+
+\begin{solution}
+我们取 $[x,y] = 2^x \cdot 3^y$, $\Pi_1 = \operatorname{ep}_0$, $\Pi_2 = \operatorname{ep}_1$, 从而 $[\cdot,\cdot], \Pi_1, \Pi_2 \in \mathcal{EF}$. 取 $\omega_n \equiv \lambdabstract{x}{x \dots x}$ (其中共有 $n$ 个 $x$ 且 $n \ge 1, x\equiv \upsilon^{(0)}$).
+
+1. $f(n) = \sharp \omega_n$ ($n \ge 1$, 补充定义 $f(0) = 0$), 首先证明 $f \in \PRF$. 对于 $f(n + 1)$:
+\begin{align*}
+f(n+1) & = \sharp \omega_n = [2, [\sharp \upsilon^{(0)}, \sharp \upsilon^{(0)} \dots \upsilon^{(0)}]] & (\text{共 $n+1$ 个 } \upsilon^{(0)}) \\
+& = [2, [1, [1, \sharp \upsilon^{(0)} \dots \upsilon^{(0)}]]] & (\text{共 $n$ 个 } \upsilon^{(0)})
+\end{align*}
+又因为 $\sharp \upsilon^{(0)} = \Pi_2^2 (f(n))$ (共 $n$ 个$\upsilon^{(0)}$). 所以 $f \in \PRF$.
+
+2. 因为 $f \in \PRF$, 所以有 $F \in \Lambda^\circ$ 使得 $F \numeral{n} = \numeral{\omega_n}$. 根据定理 3.41 ,有 $E (F \numeral{n}) = E \numeral{\omega_n} = \omega_n$, $E$ 为枚举子.
+
+取 $M \equiv \lambdabstract{z}{(E(F z)) z}$, 因此 $M \numeral{n} = (E (F \numeral{n})) \numeral{n} = \omega_n \numeral{n} = \numeral{n} \dots \numeral{n} = \numeral{\underbrace{n^{{.}^{{.}^{{.}^{n}}}}}_{n ~ \text{个} ~ n}}$ ($n \ge 1$).
+
+3. 最后使用题目 3.18 中的 $D$, 令 $L \equiv \lambdabstract{z}{D \numeral{0} (M z) z}$, $L$ $\lambda$-定义函数 $f(n) = \underbrace{n^{{.}^{{.}^{{.}^{n}}}}}_{n ~ \text{个} ~ n}$.
+\end{solution}

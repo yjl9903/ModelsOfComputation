@@ -1,0 +1,53 @@
+\begin{problem}
+设 $f : \N{} \to \N{}$ 定义如下:
+\begin{align*}
+f(0) & = 0 \\
+f(x + 1) & = g(f(x))
+\end{align*}
+证明: 若 $g$ 为 Turing-可计算, 则 $f$ 为 Turing-可计算.
+\end{problem}
+
+\begin{solution}
+因为 $g$ 为 Turing-可计算, 因此存在机器 \machine{$g$} 计算函数 $g$.
+
+构造机器 $M_1$ 如表 \ref{sol:5.10-1}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 &     & 0R2 \\ \hline
+        2 & 0Rv & 1R3 \\ \hline
+        3 & 1R4 & 1R3 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.10 $M_1$}
+    \label{sol:5.10-1}
+\end{table}
+
+所以, 若 $x = 0$ 则 $M_1 | 1 : 0\rwhead{\overline{x}}0\overline{y}0\cdots \twoheadrightarrow v : 000\rwhead{\overline{y}}0\cdots$; 
+
+若 $x > 0$ 则 $M_1 | 1 : 0\rwhead{\overline{x}}0\overline{y}0\cdots \twoheadrightarrow 4 : 001^x0\rwhead{\overline{y}}0\cdots$.
+
+令 $M_2$ 为 $M_1 \concat \machine{$g$} + 3 \concat \compressmachine \concat \shiftlmachine$, 从而:
+
+若 $x = 0$ 则 $M_2 | 1 : 0\rwhead{\overline{x}}0\overline{y}0\cdots \twoheadrightarrow v : 000\rwhead{\overline{y}}0\cdots$;
+
+若 $x > 0$ 则 $M_1 | 1 : 0\rwhead{\overline{x}}0\overline{y}0\cdots \twoheadrightarrow w : 00\rwhead{1^x}0\overline{g(y)}0\cdots$, 其中 $w$ 为 $M_2$ 的输出状态.
+
+最后, 构造机器 $M_3$ 如表 \ref{sol:5.10-3}, 为输入后添加一个 $\overline{0}$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 0R2 & 1R1 \\ \hline
+        2 & 1L3 &     \\ \hline
+        3 & 0L4 &     \\ \hline
+        3 & 0R5 & 1L4 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.10 $M_3$}
+    \label{sol:5.10-3}
+\end{table}
+
+令机器 \machine{$f$} 为 $M_3 \concat \operatorname{repeat} M_2$, 即 $M_3 \concat M[w := 1]$ 计算函数 $f$, 因此 $f$ 为 Turing-可计算的.
+\end{solution}

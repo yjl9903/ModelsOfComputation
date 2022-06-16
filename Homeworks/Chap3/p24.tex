@@ -1,0 +1,33 @@
+\begin{problem}
+构造 $H \in \Lambda^\circ$, 使得对于任意 $n \in \mathbb{N}$, $x_1, \dots, x_n \in \Lambda$, 有
+\[
+H\numeral{n}x_1 \dots x_n =_\beta \lambdabstract{z}{z x_1 \dots x_n}
+\]
+\end{problem}
+
+\begin{solution}
+1. 令 $L_n \equiv [x_1, \dots, x_n] \equiv \lambdabstract{z}{zx_1\dots x_n}$ ($n \ge 1$), 这里 $x_i$ 为 $\upsilon^{(i)}$ ($1 \le i \le n$), $z$ 为 $\upsilon^{(0)}$.
+
+设 $l(n) = \sharp L_n$, 约定 $l(0)=0$, 下面证明 $l \in \PRF$.
+\begin{align*}
+l(n) & = [2, [\sharp z, \sharp z x_1 \dots x_n]] \\
+& = [2, [1, h(n)]]
+\end{align*}
+这里 $h(n) = \sharp z x_1 \dots x_n$.
+\begin{align*}
+h(1) & = \sharp zx_1 = [1,[1,\sharp x_1]] = [1,[1,[0,1]]] \\
+h(n+1) & = \sharp z x_1 \dots x_n x_{n+1} \\
+& = [2, [h(n), \sharp x_{n+1}]] \\
+& = [2, [h(n), [0, n+1]]]
+\end{align*}
+补充定义 $h(0) = 0$, 因此 $h \in \PRF$. 从而 $l(n) = \begin{cases}0 & \text{if } n = 0 \\ [2,[1,h(n)]] & \text{否则} \end{cases} \in \PRF$.
+
+2. 令 $M_n \equiv \lambdabstract{x_1\dots x_n}{[x_1,\dots,x_n]}$, $g(n) = \sharp M_n$, $l(n) = \sharp [x_1, \dots, x_n]$.
+
+令 $f(i, y) = [2, [[0, i], y]] \in \PRF$, 所以 $g(n) = f(1, f(2, \dots, f(n-1, f(n, l(n)))))$. 同习题 1.17 可以证明 $g \in \PRF$.
+
+3. 存在 $G \in \Lambda^\circ$, $G$ $\lambda$-定义 $g$, 从而 $G \numeral{n} =_\beta \numeral{M_n}$, 因此 $E(G \numeral{n}) = M_n$.
+
+令 $H \equiv \lambdabstract{z}{E(Gz)}$, 从而 $H \numeral{n} x_1 \dots x_n = (\lambdabstract{z}{E(Gz)}) \numeral{n}x_1\dots x_n=M_n x_1 \dots x_n = [x_1, \dots, x_n] = \lambdabstract{z}{zx_1 \dots x_n}$.
+\end{solution}
+

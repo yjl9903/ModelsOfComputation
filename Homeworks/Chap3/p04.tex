@@ -1,0 +1,14 @@
+\begin{problem}
+设 $F \in \Lambda$ 呈形 $\lambdabstract{x}{M}$, 证明:
+
+1. $\lambdabstract{z}{Fz} =_\beta F$;
+
+2. $\lambdabstract{z}{yz} \neq_\beta y$.
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+\item $\lambdabstract{z}{Fz} = \lambdabstract{z}{(\lambdabstract{x}{M})z} \to_\beta \lambdabstract{z}{M[x:=z]} =_\alpha \lambdabstract{x}{M} \equiv F$, 因此 $\lambdabstract{z}{Fz} =_\beta F$.
+\item 若 $y \equiv v$ ($v \in \nabla$), 即 $y$ 是一个变量, 此时 $\lambdabstract{z}{yz}$ 是一个 $\BNF$, 显然 $\lambdabstract{z}{yz} \neq_\beta y$.
+\end{enumerate}
+\end{solution}

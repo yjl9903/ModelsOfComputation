@@ -1,0 +1,36 @@
+\begin{problem}
+存在一般递归函数 $\operatorname{var}, \operatorname{app}, \operatorname{abs}, \operatorname{num}: \mathbb{N} \to \mathbb{N}$ 使得
+\begin{enumerate}
+\item $\forall n \in \mathbb{N}. \operatorname{var}(n) = \sharp (\upsilon^{(n)})$;
+\item $\forall M, N \in \Lambda. \operatorname{app}(\sharp M, \sharp N) = \sharp(M N)$;
+\item $\forall x \in \nabla, M \in \Lambda. \operatorname{abs}(\sharp x, \sharp M) = \sharp (\lambdabstract{x}{M})$;
+\item $\forall n \in \mathbb{N}. \operatorname{num}(n) = \sharp \numeral{n}$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+我们取 $[x,y] = 2^x \cdot 3^y$, $\Pi_1 = \operatorname{ep}_0$, $\Pi_2 = \operatorname{ep}_1$, 从而 $[\cdot,\cdot], \Pi_1, \Pi_2 \in \mathcal{EF}$.
+
+\begin{enumerate}
+\item $\sharp (\upsilon^{(n)}) = [0, n] \in \mathcal{EF}$, 所以取 $\operatorname{var}(n) = [0, n] \in \EF$.
+\item 取 $\operatorname{app}(m,n) = [1,[m,n]] \in \EF$.
+\item 取 $\operatorname{abs}(n,m)=[2,[n, m]] \in \EF$.
+\item 对于 $\sharp \numeral{n + 1}$ 有
+\begin{align*}
+\sharp \numeral{n + 1} & = \sharp(\lambdabstract{fx}{f^{n+1}x}) \\
+& = [2, [\sharp f, \sharp \lambdabstract{x}{f^{n+1}x}]] \\
+& = [2, [\sharp f, [2, [\sharp x, \sharp f^{n+1}x]]]] \\
+& = [2, [\sharp f, [2, [\sharp x, [1, [\sharp f, \sharp f^n x]]]]]]
+\end{align*}
+对于 $\sharp \numeral{n} = [2, [\sharp f, [2, [\sharp x, \sharp f^n x]]]]$, 因此 $\sharp f^n x = (\Pi_2 \circ \Pi_2 \circ \Pi_2 \circ \Pi_2) (\sharp \numeral{n})$. 因此, $\sharp \numeral{n+1} = [2, [\sharp f, [2, [\sharp x, [1, [\sharp f, \Pi_2^4(\sharp \numeral{n})]]]]]]$.
+
+令 $h(z) = [2, [\sharp f, [2, [\sharp x, [1, [\sharp f, \Pi_2^4 (z)]]]]]]$, 取 $x \equiv \upsilon^{(0)}$, $f \equiv \upsilon^{(1)}$ 时, $h \in \EF$. 于是
+\[
+\begin{cases}
+\operatorname{num}(0) & = \sharp \numeral{0} \\
+\operatorname{num}(n+1) & = h(\operatorname{num}(n))
+\end{cases}
+\]
+因此, $\operatorname{num} \in \PRF$ 且 $\forall n \in \mathbb{N}. \operatorname{num}(n) = \sharp \numeral{n}$.
+\end{enumerate}
+\end{solution}

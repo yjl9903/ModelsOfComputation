@@ -1,0 +1,16 @@
+\begin{problem}
+证明: $(\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx})$ 没有 $\BNF$.
+\end{problem}
+
+\begin{solution}
+令 $W = (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx})$.
+\begin{flalign*}
+W = ~ & (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) \\
+\to_\beta ~ & (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) \\
+= ~ & W (\lambdabstract{x}{xxx}) \\
+\to_\beta ~ & W (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) \\
+\to_\beta ~ & W (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx}) \\
+\to_\beta ~ & \dots
+\end{flalign*}
+在每步规约时, 有且仅有一个 $\beta-\text{redex}$ ($W = (\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx})$), 对它进行规约后产生了一个无穷规约链, 因此 $(\lambdabstract{x}{xxx}) (\lambdabstract{x}{xxx})$ 没有 $\BNF$.
+\end{solution}

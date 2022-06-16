@@ -1,0 +1,33 @@
+\begin{problem}
+构造机器计算函数 $f(x,y) = x \times y$.
+\end{problem}
+
+\begin{solution}
+对于该机器, 定义见表\ref{sol:5.3}, 输入 $1 : 0\underset{\uparrow}{1^{x+1}}01^{y+1}0\cdots$, 在 $y = 0$ 时, 输出 $18 : 0^{x+6}\underset{\uparrow}{1}0\cdots$, 在 $y \neq 0$ 时输出 $18 : 0^{x+y+4}\underset{\uparrow}{1^{x\times y + 1}}0\cdots$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0    & 1   \\ \hline
+        1 &      & 0R2 \\ \hline
+        2 & 0R14 & 0R3 \\ \hline
+        3 & 0R4  & 1R3 \\ \hline
+        4 & 0R5  & 0R5 \\ \hline
+        5 & 0R16 & 0R6 \\ \hline
+        6 & 0R7  & 1R6 \\ \hline
+        7 & 1L8  & 1R7 \\ \hline
+        8 & 0L9  & 1L8 \\ \hline
+        9 & 1R5  & 1L9 \\ \hline
+       10 & 0L11 & 1L10 \\ \hline
+       11 & 0L12 &      \\ \hline
+       12 & 0R14 & 1L13 \\ \hline
+       13 & 0R2  & 1L13 \\ \hline
+       14 & 0R14 & 0R15 \\ \hline
+       15 & 1O18 & 0R15 \\ \hline
+       16 & 1L17 & 1L17 \\ \hline
+       17 & 0L10 & 0L10 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.3}
+    \label{sol:5.3}
+\end{table}
+\end{solution}

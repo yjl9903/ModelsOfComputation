@@ -1,0 +1,38 @@
+\begin{problem}
+证明: 对于任何 $M, N \in \Lambda$,
+\[
+M =_\beta N \Leftrightarrow \lambda\beta \vdash M = N
+\]
+\end{problem}
+
+\begin{solution}
+首先证明 ``$\Rightarrow$''. 证明, 若 $M =_\beta N$, 那么 $\lambda\beta \vdash M = N$.
+
+先证明一个引理, 若 $M \sreduceto N$, 那么 $\lambda\beta \vdash M = N$.
+
+对 $\sreduceto$ 的结构作归纳.
+\begin{enumerate}
+\item $(M, N) \in \beta$, 那么由 $\lambda\beta$ 形式系统的 $\beta$ 公理, 可知 $\lambda\beta \vdash M = N$.
+\item $(M, N)$ 呈形 $(MP, MQ)$, 根据结构归纳假设若 $P \sreduceto Q$, 那么 $\lambda\beta \vdash P = Q$, 因为 $\mu$ 公理, $\lambda\beta \vdash M P = M Q$.
+\item $(M, N)$ 呈形 $(PM, QM)$, 根据结构归纳假设若 $P \sreduceto Q$, 那么 $\lambda\beta \vdash P = Q$, 因为 $\upsilon$ 公理, $\lambda\beta \vdash PM = QM$.
+\item $(M, N)$ 呈形 $(\lambdabstract{z}{P}, \lambdabstract{z}{Q})$, 根据结构归纳假设若 $P \sreduceto Q$, 那么 $\lambda\beta \vdash P = Q$, 因为 $\xi$ 公理, $\lambda\beta \vdash \lambdabstract{z}{P} = \lambdabstract{z}{Q}$.
+\end{enumerate}
+在证明, 若 $M \leftarrow_\beta N$, 那么 $\lambda\beta \vdash M = N$. 此时 $N \sreduceto M$, 所以 $\lambda\beta \vdash N = M$, 根据 $\sigma$ 公理, $\lambda\beta \vdash M = N$.
+
+根据题目 3.9, 存在序列 $P_0, \dots, P_n \in \Lambda$, 使得 $M \equiv P_0$, $N \equiv P_n$, 且对于任何 $0 \le i < n$, $P_i \sreduceto P_{i+1}$ 或 $P_{i+1} \sreduceto P_{i}$. 所以 $\lambda\beta \vdash P_0 = P_1, \dots, \lambda\beta \vdash P_{n-1} = P_n$. 连续使用公理 $\tau$, 可知 $\lambda\beta \vdash P_0 = P_n$, 因此 $\lambda\beta \vdash M = N$.
+
+然后证明 ``$\Leftarrow$''. 证明, 若 $\lambda\beta \vdash M = N$, 那么 $M =_\beta N$.
+
+对 $\lambda\beta \vdash M = N$ 的证明作结构归纳.
+\begin{enumerate}
+\item $M = N$ 为公理 $\rho$ 或 $\beta$ 得到, 易见 $M =_\beta N$.
+\item $M = N$ 由公理 $\sigma$ 得到, 此时我们有 $N = M$, 由归纳假设 $M =_\beta N$.
+\item $M = N$ 由公理 $\tau$ 得到, 此时我们有 $M = N, N = L$, 有归纳假设 $M =_\beta N, N =_\beta L$, 所以 $M =_\beta L$.
+\item $M = N$ 由公理 $\mu$ 或公理 $\upsilon$ 得到, 根据 $=_\beta$ 的合拍性易知成立.
+\item $M = N$ 由公理 $\xi$ 得到, 根据题目 3.8 证明的结论易知成立.
+\end{enumerate}
+
+因此 $M =_\beta N$.
+
+综上所述, $M =_\beta N \Leftrightarrow \lambda\beta \vdash M = N$.
+\end{solution}

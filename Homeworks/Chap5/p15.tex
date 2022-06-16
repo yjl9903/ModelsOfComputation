@@ -1,0 +1,120 @@
+\begin{problem}
+证明定理 5.21 中的函数 $g$ 为一般递归函数.
+\end{problem}
+
+\newtheorem{lemma}{引理}
+
+\begin{solution}
+\begin{lemma}
+设 $n \in \N{}$, 构造机器 $M_n$ 使得输入 $\overline{x}$ 输出 $\overline{n}$, 即 $M_n | 10\rwhead{\overline{x}}0\cdots \twoheadrightarrow 0\cdots0\rwhead{\overline{n}}0\cdots$., 即 $M_n$ 计算常函数 $C(x) = n$.
+\end{lemma}
+
+\begin{proof}
+构造 $n+2$ 个状态的机器 $M_n$ 先清空输入, 然后写入 $n+1$ 个 $1$. 示例机器如表 \ref{sol:5.15-1}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 1R2 & 0R1 \\ \hline
+        2 & 1R3 &     \\ \hline
+        3 & 1R4 &     \\ \hline
+        \dots & \dots & \dots \\ \hline
+        $n+1$ & 1L($n+2$) & \\ \hline
+        $n+2$ & 0R($n+3$) & 1L($n+2$) \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.15 $M_n$}
+    \label{sol:5.15-1}
+\end{table}
+
+设 $M_n$ 的第 $i$ 行为 $r_i$. 于是 $\sharp r_1 = \pangle{1,1,4,2,0,4,1}$; 对于 $2 \le i \le n$, $\sharp r_i = \pangle{i,1,4,i+1,4,4,4}$; $\sharp r_{n+1} = \pangle{n+1,1,2,n+2,4,4,4}$, $\sharp r_{n+2} = \pangle{n+2,0,4,n+3,1,2,n+2}$.
+
+所以 $\sharp M_n = \pangle{\sharp r_1, \dots, \sharp r_{n+2}} \in \EF$.
+\end{proof}
+
+\begin{lemma}
+存在一般递归函数 $h(n,l)$ 使得对于任何机器 $M$, 有 $h(\sharp M, l) = \sharp(M+l)$.
+\end{lemma}
+
+\begin{proof}
+设 $M$ 为机器, 令 $n = \sharp M$, 设 $M$ 有 $k+1$ 行, 从而 $k = (\max x \le n. P_x(n)) + 1$ 为对于 $n$ 的初等函数. 设它为 $k(n)$, 对于 $1 \le i \le k(n)$ 第 $i$ 行的编码为 $\sharp r_i = \operatorname{ep}_{i-1}(n)$ 对于 $i, n$ 为初等函数.
+
+$M+l$ 为由在 $M$ 中将所有的状态加上 $l$ 得到的新机器, 设新机器 $M+l$ 的第 $i$ 行为 $r_i'$, 以下证明: $\sharp r_i'$ 可以由 $\sharp r_i$ 来表示, 从而 $\sharp r_i'$ 为对于 $(i,n,l)$ 的初等函数. 从而 $\sharp (M+l) = \pangle{\sharp r_0', \dots, \sharp r_k'} = \prod_{i=0}^{k(n)} P_i^{\sharp r_i'}$ 为对于 $n, l$ 的初等函数.
+
+情况 1. $r_i$ 呈形 $(i,xyz,uvw)$ 从而 $r_i'$ 呈形 $(i+l,xy(z+l), uv(w+l))$. 因为 $\sharp r_i = \pangle{i, \sharp x, \sharp y, z, \sharp u, \sharp v, w}$, 所以有
+\begin{align*}
+\sharp r_i' & = \pangle{i+l, \operatorname{ep}_1(\sharp r_i), \operatorname{ep}_2(\sharp r_i), \operatorname{ep}_3(\sharp r_i) + l, \operatorname{ep}_4(\sharp r_i), \operatorname{ep}_5(\sharp r_i), \operatorname{ep}_6(\sharp r_i) + l} \\
+& = (\sharp r_i) \cdot 2^l \cdot 7^l \cdot 17^l \\
+& = \operatorname{ep}_{i-1}(n) \cdot (2 \cdot 7 \cdot 17)^l
+\end{align*}
+因此 $\sharp r_i'$ 为对于 $i,n,l$ 的初等函数, 设为 $f_1(i,n,l)$.
+
+情况 2. $r_i$ 呈形为 $(i,xyz,RRR)$, $r_i'$ 呈形 $(i+l,xy(i+l),RRR)$. 因为 $\sharp r_i = \pangle{i,\sharp x, \sharp y, z, 4,4,4}$, 所以 $\sharp r_i' = \pangle{i+l,\sharp x, \sharp y, z+l,4,4,4}=\operatorname{ep}_{i-1}(n) \cdot (2\cdot 7)^l$ 为对于 $i,n,l$ 的初等函数, 设为 $f_2(i,n,l)$.
+
+情况 3. $r_i$ 呈形为 $(i,LLL,uvw)$, $r_i'$ 呈形 $(i+l,LLL,uv(w+l))$. 类似情况 2, 可以知道 $\sharp r_i' = \operatorname{ep}_{i-1}(n) \cdot (2 \cdot 17)^l$ 为对于 $i,n,l$ 的初等函数, 设为 $f_3(i,n,l)$.
+
+所以 \[
+\sharp r_i' = \begin{cases}
+f_3(i,n,l) & \text{if } \operatorname{ep}_1(\sharp r_i) = 2 \\
+f_2(i,n,l) & \text{if } \operatorname{ep}_4(\sharp r_i) = 4 \\
+f_1(i,n,l) & \text{o.w.}
+\end{cases}
+\]
+易见, $\sharp r_i'$ 为对于 $i,n,l$ 的初等函数, 设为 $f(i,n,l)$.
+
+因为 $\sharp (M+l) = \prod_{i=0}^{k(n)}P_i^{f(i,n,l)}$, 所以令 $h(n,l) = \prod_{i=0}^{k(n)} P_i^{f(i,n,l)}$. 易见 $h(\sharp M, l) = \sharp (M+l) \in \EF$.
+\end{proof}
+
+\begin{lemma}
+设 $n = \sharp M$, $M_n$ 为引理 1 定义的机器, 令 $\hat{M} = M_n \concat M$, $j(n) = \sharp \hat{M} \in \EF$.
+\end{lemma}
+
+\begin{proof}
+$\hat{M} = M_n \concat M$ 即为 $M_n + (M + (n+2))$, 从而由以上引理可知: $M_n$ 有 $n+3$ 行 $r_0, r_1, \dots, r_n+2$; $M+(n+2)$ 有 $k(n)+1$ 行 $r_0', r_1', \dots, r_{k(n)}'$.
+
+从而 \begin{align*}
+\sharp \hat{M} & = \pangle{\sharp r_1, \dots, \sharp r_{n+2}, \sharp r_1', \dots, \sharp r_{k(n)}'} \\
+& = P_0^{\sharp r_1} \cdot \prod_{i = 2}^n P_{i-1}^{\pangle{i,1,4,i+1,4,4,4}} \cdot P_n^{\sharp r_{n+1}} \cdot P_{n+1}^{\sharp r_{n+2}} \cdot \prod_{j=1}^{k(n)} P_{n+1+i}^{\sharp r_j'} \\
+& = P_0^{\pangle{1,1,4,2,0,4,1}} \cdot \prod_{i=2}^n P_{i-1}^{\pangle{i,1,4,i+1,4,4,4}} \cdot P_{n}^{\pangle{n+1,1,2,n+2,4,4,4}} \cdot P_{n+1}^{\pangle{n+2,0,4,n+3,1,2,n+2}} \cdot \prod_{j=1}^{k(n)} P_{n+1+j}^{f(i,n,l)} \in \EF
+\end{align*}
+
+故 $j(n) = \sharp \hat{M} \in \EF$.
+\end{proof}
+
+\begin{lemma}
+$S = \{ \sharp M ~ | ~ M \text{ 为机器} \}$ 是可判定的.
+\end{lemma}
+
+\begin{proof}
+$n \in S$ $\Leftrightarrow$ 有机器 $M$ 使得 $n = \sharp M$.
+
+$\Leftrightarrow$ 有机器 $M$ 有 $k(n)$ 行 $r_0, r_1, \dots, r_{k(n)}$ 且 $n = \pangle{\sharp r_1, \dots, \sharp r_{k(n)}}$, 其中 $r_i$ 为机器 $M$ 的第 $i$ 行, 而 $\operatorname{ep}_{i-1}(n)$ 为机器第 $i$ 行的编码.
+
+又因为 $m$ 为某机器行的编码 (记为 $\operatorname{codel}(m,n)$) 
+
+$\Leftrightarrow$ $m = \sharp r_i$ 且 $i \le k(n)$.
+
+$\Leftrightarrow$ $m = \sharp \machine{$i$ | $xyz$ | $uvw$}$ 且 $i \le k(n)$.
+
+$\Leftrightarrow$ \begin{align*}
+\{[(\operatorname{ep}_0(m) \le k(n)) \land & (\operatorname{ep}_1(m) \in \{0,1\}) \land (\operatorname{ep}_2(m)\in\{\sharp L, \sharp O, \sharp R\}) \land \\ 
+& (\operatorname{ep}_4(m) \in \{0,1\}) \land (\operatorname{ep}_5(m)\in\{\sharp L, \sharp O, \sharp R\})]\} \\
+\lor \{[(\operatorname{ep}_0(m) \le k(n)) \land & (\operatorname{ep}_1(m) \in \{0,1\}) \land (\operatorname{ep}_2(m)\in\{\sharp L, \sharp O, \sharp R\}) \land \\ 
+& (\operatorname{ep}_4(m) = \operatorname{ep}_5(m) = \operatorname{ep}_6(m) = \sharp R) ]\} \\
+\lor \{[(\operatorname{ep}_0(m) \le k(n)) \land & (\operatorname{ep}_4(m) \in \{0,1\}) \land (\operatorname{ep}_5(m)\in\{\sharp L, \sharp O, \sharp R\}) \land \\ 
+& (\operatorname{ep}_1(m) = \operatorname{ep}_2(m) = \operatorname{ep}_3(m) = \sharp R) ]\} \\
+\end{align*}
+所以 $\operatorname{codel}(m,n)$ 为初等数论谓词, 从而
+\[
+n \in S \Leftrightarrow (\forall i \le k(n)). [\operatorname{codel}(ep_{i-1}(n), n)] \land k(n) = (\max x\le n. P_x | n) + 1
+\]
+所以 $n \in S$ 为初等数论谓词, 所以 $\chi_S \in \EF$, 从而 $\chi_S$ 为 recursive, 故 $S$ 可判定.
+\end{proof}
+
+回到原命题.
+
+因为 $j(n) = \sharp \hat{M} \in \EF$ (引理 3), $\chi_S(n) \in \EF$ (引理 4).
+
+所以 $g(n) = \begin{cases}j(n) & \text{if } n = \sharp M \\ 0 & \text{o.w.}\end{cases} = \begin{cases}j(n) & \text{if } n \in S \\ 0 & \text{o.w.}\end{cases} = j(n) \cdot N(\chi_S(n)) \in \EF$.
+
+\end{solution}

@@ -1,0 +1,22 @@
+\begin{problem}
+设机器 $M_2$ 定义如下表\ref{tab:5.6}, 对于输入 $(2,1):01^n01^m01^k00\cdots$, 其中 $n,m,k\in \mathbb{N}^+$, 求输出.
+\end{problem}
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 0R2 & 0R1 \\ \hline
+        2 & 1R3 & 0R1 \\ \hline
+        3 & 1R4 &     \\ \hline
+        4 & 1R5 &     \\ \hline
+        5 & 1L6 &     \\ \hline
+        6 & 0R7 & 1L6 \\ \hhline
+    \end{tabularx}
+    \caption{题目 5.6}
+    \label{tab:5.6}
+\end{table}
+
+\begin{solution}
+输入 $(2,1):01^n01^m01^k00\cdots$, 其中 $n,m,k\in \mathbb{N}^+$, 输出 $7 : 0^{n+m+k+3}\underset{\uparrow}{1}1110\cdots$, 即计算函数 $f(x,y,z)=3$.
+\end{solution}

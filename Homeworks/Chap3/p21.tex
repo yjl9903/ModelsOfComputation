@@ -1,0 +1,18 @@
+\begin{problem}
+设 $f, g : \mathbb{N} \to \mathbb{N}$, $f = \operatorname{Itw}[g]$, 即
+\begin{align*}
+f(0) & = 0 \\
+f(n+1) & = g(f(n))
+\end{align*}
+且 $G \in \Lambda^\circ$ $\lambda$-定义函数 $g$. 试求 $F \in \Lambda^\circ$  使得 $F$ $\lambda$-定义函数 $f$.
+\end{problem}
+
+\begin{solution}
+构造方程
+\begin{align*}
+F \numeral{n} & = D \numeral{0} (G (F (\operatorname{pred} \numeral{n}))) \numeral{n} \\
+F \numeral{n} & = (\lambdabstract{n}{D \numeral{0} (G (F (\operatorname{pred} n))) n}) \numeral{n} \\
+F \numeral{n} & = (\lambdabstract{fn}{D \numeral{0} (G (f (\operatorname{pred} n))) n}) F \numeral{n}
+\end{align*}
+因此, $F \equiv \Theta (\lambdabstract{fn}{D \numeral{0} (G (f (\operatorname{pred} n))) n})$ $\lambda$-定义了函数 $f$.
+\end{solution}

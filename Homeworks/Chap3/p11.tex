@@ -1,0 +1,38 @@
+\begin{problem}
+证明: 对于任何 $M, N \in \Lambda$,
+\[
+M =_{\beta\eta} N \Leftrightarrow \lambda\beta\eta \vdash M = N
+\]
+\end{problem}
+
+\begin{solution}
+首先证明 ``$\Rightarrow$''. 证明, 若 $M =_{\beta\eta} N$, 那么 $\lambda\beta\eta \vdash M = N$.
+
+先证明一个引理, 若 $M \to_{\beta\eta} N$, 那么 $\lambda\beta\eta \vdash M = N$.
+
+对 $\to_{\beta\eta}$ 的结构作归纳.
+\begin{enumerate}
+\item $(M, N) \in \beta$, 那么由 $\lambda\beta\eta$ 形式系统的 $\beta$ 公理, 可知 $\lambda\beta\eta \vdash M = N$.
+\item $(M, N) \in \eta$, 那么由 $\lambda\beta\eta$ 形式系统的 $\eta$ 公理, 可知 $\lambda\beta\eta \vdash M = N$.
+\item $(M, N)$ 呈形 $(MP, MQ)$, 根据结构归纳假设若 $P \to_{\beta\eta} Q$, 那么 $\lambda\beta\eta \vdash P = Q$, 因为 $\mu$ 公理, $\lambda\beta\eta \vdash M P = M Q$.
+\item $(M, N)$ 呈形 $(PM, QM)$, 根据结构归纳假设若 $P \to_{\beta\eta} Q$, 那么 $\lambda\beta\eta \vdash P = Q$, 因为 $\upsilon$ 公理, $\lambda\beta\eta \vdash PM = QM$.
+\item $(M, N)$ 呈形 $(\lambdabstract{z}{P}, \lambdabstract{z}{Q})$, 根据结构归纳假设若 $P \to_{\beta\eta} Q$, 那么 $\lambda\beta\eta \vdash P = Q$, 因为 $\xi$ 公理, $\lambda\beta\eta \vdash \lambdabstract{z}{P} = \lambdabstract{z}{Q}$.
+\end{enumerate}
+在证明, 若 $M \leftarrow_\beta N$, 那么 $\lambda\beta\eta \vdash M = N$. 此时 $N \to_{\beta\eta} M$, 所以 $\lambda\beta\eta \vdash N = M$, 根据 $\sigma$ 公理, $\lambda\beta\eta \vdash M = N$.
+
+根据题目 3.9, 存在序列 $P_0, \dots, P_n \in \Lambda$, 使得 $M \equiv P_0$, $N \equiv P_n$, 且对于任何 $0 \le i < n$, $P_i \to_{\beta\eta} P_{i+1}$ 或 $P_{i+1} \to_{\beta\eta} P_{i}$. 所以 $\lambda\beta\eta \vdash P_0 = P_1, \dots, \lambda\beta\eta \vdash P_{n-1} = P_n$. 连续使用公理 $\tau$, 可知 $\lambda\beta\eta \vdash P_0 = P_n$, 因此 $\lambda\beta\eta \vdash M = N$.
+
+然后证明 ``$\Leftarrow$''. 证明, 若 $\lambda\beta\eta \vdash M = N$, 那么 $M =_{\beta\eta} N$.
+
+对 $\lambda\beta\eta \vdash M = N$ 的证明作结构归纳.
+\begin{enumerate}
+\item $M = N$ 为公理 $\rho$, $\beta$ 或 $\eta$ 得到, 易见 $M =_{\beta\eta} N$.
+\item $M = N$ 由公理 $\sigma$ 得到, 此时我们有 $N = M$, 由归纳假设 $M =_{\beta\eta} N$.
+\item $M = N$ 由公理 $\tau$ 得到, 此时我们有 $M = N, N = L$, 有归纳假设 $M =_{\beta\eta} N, N =_{\beta\eta} L$, 所以 $M =_{\beta\eta} L$.
+\item $M = N$ 由公理 $\mu$ 或公理 $\upsilon$ 得到, 根据 $=_{\beta\eta}$ 的合拍性易知成立.
+\item $M = N$ 由公理 $\xi$ 得到, 根据题目 3.8 证明的结论易知成立.
+\end{enumerate}
+因此 $M =_{\beta\eta} N$.
+
+综上所述, $M =_{\beta\eta} N \Leftrightarrow \lambda\beta\eta \vdash M = N$.
+\end{solution}

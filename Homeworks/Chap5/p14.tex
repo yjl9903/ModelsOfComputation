@@ -1,0 +1,28 @@
+\begin{problem}
+设 $f : \N{} \to \N{}$ 是 Turing-可计算的, 构造机器 M 使其输出 $f$ 的最小零点.
+\end{problem}
+
+\begin{solution}
+构造机器 $M_1$, 如下表 \ref{sol:5.14-1}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 &     & 0R2 \\ \hline
+        2 & 0L3 & 0R5 \\ \hline
+        3 & 0L3 & 1L4 \\ \hline
+        4 & 0Ru & 1L4 \\ \hline
+        5 & 0L6 & 0R5 \\ \hline
+        6 & 0L6 & 1R7 \\ \hline
+        7 & 1L8 &     \\ \hline
+        8 & 0Rv & 1L8 \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.14 $M_1$}
+    \label{sol:5.14-1}
+\end{table}
+
+从而输入 $1 : 0\overline{x}0\cdots0\rwhead{\overline{y}}0\cdots$, 若 $y = 0$, $M_1$ 输出 $u : 0\rwhead{1^{x+1}}0\cdots$; 若 $y > 0$, 输出 $v : 0\rwhead{1^{x+2}}0\cdots$.
+
+令 $M_2 = \copymachine{1} \concat \machine{$f$} \concat M_1$, 则 $M = \operatorname{repeat} M_2$ 为所求机器, 即 $M = M_2[v := 1]$, 且输出状态为 $u$.
+\end{solution}

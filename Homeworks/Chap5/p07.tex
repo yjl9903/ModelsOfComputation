@@ -1,0 +1,59 @@
+\begin{problem}
+构造机器计算函数 $f(x) = \lfloor \sqrt{x} \rfloor$.
+\end{problem}
+
+\begin{solution}
+根据 $\sqrt{x}$ 的定义, 使用 $\mu$ 算子可以作出 $f(x) = \mu y. [S(x) \dotminus sq(S(y))]$, 其中 $sq(x) = x^2$.
+
+定义机器 $M_1$ 为表 \ref{sol:5.7-1} (其中 $u < v$).
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 &     & 0R2 \\ \hline
+        2 & 0L3 & 0R5 \\ \hline
+        3 & 0L3 & 1L4 \\ \hline
+        4 & 0Ru & 1L4 \\ \hline
+        5 & 0L6 & 0R5 \\ \hline
+        6 & 0L6 & 1L6 \\ \hline
+        7 & 0Rv & 1L6 \\ \hhline
+    \end{tabularx}
+    \caption{题目 5.7 - 1}
+    \label{sol:5.7-1}
+\end{table}
+
+从而对于输入 $1 : 0\overline{x}0\overline{y}0\underset{\uparrow}{\overline{0}}0\cdots$, $M_1$ 输出 $u : 0\overline{x}0\underset{\uparrow}{\overline{y}}0\cdots$; 对于输入 $1 : 0\overline{x}0\overline{y}0\underset{\uparrow}{\overline{n}}0\cdots$ ($n > 0$), $M_1$ 输出 $v : 0\overline{x}0\underset{\uparrow}{\overline{y}}0\cdots$.
+
+令机器 $M_2$ 为
+\[
+M_1 \concat \machine{S} + (v - 1) \concat \machine{shiftl} \concat \machine{$\text{copy}_2$}^2 \concat \machine{g} \concat \machine{compress}
+\]
+其中 $v = 8$, \machine{S} 为后继函数的机器, \machine{mul} 为题目5.3定义的乘法函数, \machine{sub} 为题目 5.11 定义的减法函数. 机器 $g$ 为
+\[
+\machine{shiftr} \concat \machine{S} \concat \machine{$\text{copy}_1$} \concat \machine{shiftl} \concat \machine{mul} \concat \machine{compress} \concat \machine{shiftl} \concat \machine{sub}
+\]
+有 $M_2 | 0\overline{x}0\overline{y}0\rwhead{\overline{0}}0\cdots \twoheadrightarrow 0\overline{x}0\rwhead{\overline{y}}000\cdots$; $M_2 | 0\overline{x}0\overline{y}0\rwhead{\overline{1}}0\cdots \twoheadrightarrow 0\overline{x}0\overline{(y+1)}0\rwhead{\overline{g(x,y+1)}}0\cdots$.
+
+令机器 $M_3$ 为表 \ref{sol:5.7-2}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 1R2 & 1R1 \\ \hline
+        2 & 0R2 &     \\ \hline
+        3 & 1L4 &     \\ \hline
+        4 & 0L4 &     \\ \hline
+        5 & 0R5 & 1L4 \\ \hhline
+    \end{tabularx}
+    \caption{题目 5.7 - 2}
+    \label{sol:5.7-2}
+\end{table}
+
+令机器 \machine{f} 为
+\[
+M_3 \concat \machine{$\text{copy}_2$}^2 \concat \machine{g} \concat \machine{compress} \concat \text{repeat } M_2 \concat \machine{shiftl} \concat \machine{erase}
+\]
+其中 $\text{repeat } M_2$ 为 $M_2[u:=1]$, 机器 \machine{f} 计算了函数 $f(x) = \lfloor \sqrt{x} \rfloor$.
+\end{solution}

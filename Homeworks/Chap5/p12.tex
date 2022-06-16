@@ -1,0 +1,25 @@
+\begin{problem}
+证明: $\operatorname{Even} = \{ 2x ~ | ~ x \in \N{} \}$ 是 Turing-可计算的.
+\end{problem}
+
+\begin{solution}
+只需要构造机器 $E$ , 见表 \ref{sol:5.12}, 满足:
+
+输入偶数 $E | 1 : 0\rwhead{1^{2x+1}}0\cdots \twoheadrightarrow u:0\cdots0\rwhead{1}0\cdots$;
+
+输入奇数 $E | 1 : 0\rwhead{1^{2x+2}}0\cdots \twoheadrightarrow u:0\cdots0\rwhead{1}10\cdots$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 & 1L3 & 0R2 \\ \hline
+        2 & 0O3 & 0R1 \\ \hline
+        3 & 1O3 &     \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.12}
+    \label{sol:5.12}
+\end{table}
+
+因此 $\operatorname{Even}$ 是 Turing-可计算的.
+\end{solution}

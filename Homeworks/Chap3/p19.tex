@@ -1,0 +1,45 @@
+\begin{problem}
+设 $\operatorname{Exp} \equiv \lambdabstract{xy}{yx}$, 证明: 对于任意的 $n \in \mathbb{N}$ 和 $m \in \mathbb{N}^*$,
+\[
+\operatorname{Exp} \numeral{n} \numeral{m} =_\beta \numeral{n^m}
+\]
+($\operatorname{Exp}$ 由 Rosser 教授作出)
+\end{problem}
+
+\begin{solution}
+对 $m$ 进行数学归纳.
+
+奠基: 当 $m = 1$, 
+\begin{align*}
+\operatorname{Exp} \numeral{n} \numeral{1} & = (\lambdabstract{xy}{yx}) \numeral{n} (\lambdabstract{fx}{fx}) \\
+& = (\lambdabstract{fx}{fx}) \numeral{n} \\
+& = \lambdabstract{x}{\lambdabstract{fz}{f^nz} x} \\
+& = \lambdabstract{xz}{x^n z} \\
+& \equiv \numeral{n^1}
+\end{align*}
+成立。
+
+归纳假设: 当 $m = k$ 时, $\operatorname{Exp} \numeral{n} \numeral{k} =_\beta \numeral{n^k}$.
+\begin{align*}
+\operatorname{Exp} \numeral{n} \numeral{k} & = (\lambdabstract{xy}{yx}) \numeral{n} (\lambdabstract{fx}{f^kx}) \\
+& = (\lambdabstract{fx}{f^kx}) \numeral{n} \\
+& = \lambdabstract{x}{(\lambdabstract{fz}{f^nz})^k x}
+\end{align*}
+因此 $\lambdabstract{x}{(\lambdabstract{fz}{f^nz})^k x} = \numeral{n^k}$.
+
+归纳步骤: 对于 $m = k + 1$,
+\begin{align*}
+\operatorname{Exp} \numeral{n} \numeral{k+1} & = (\lambdabstract{xy}{yx}) \numeral{n} (\lambdabstract{fx}{f^{k+1}x}) \\
+& = (\lambdabstract{fx}{f^{k+1}x}) \numeral{n} \\
+& = \lambdabstract{x}{(\lambdabstract{fz}{f^n z})^{k+1} x} \\
+& = \lambdabstract{x}{(\lambdabstract{fz}{f^n z})  ((\lambdabstract{fz}{f^n z})^k x)} \\
+& = \lambdabstract{x}{(\lambdabstract{fz}{f^n z}) (\lambdabstract{y}{((\lambdabstract{fz}{f^n z})^k y)}) x} \\
+& = \lambdabstract{x}{(\lambdabstract{fz}{f^n z}) (\numeral{n^k} x}) & (\text{By I.H.}) \\
+& = \lambdabstract{xz}{(\lambdabstract{y}{x^{n^k} y})^n z} \\
+& = \lambdabstract{xz}{(\lambdabstract{y}{x^{n^k} y}) (\dots ((\lambdabstract{y}{x^{n^k} y}) z))} \\
+& \equiv \lambdabstract{xz}{x^{n^{k+1}}z} \\
+& \equiv \numeral{n^{k+1}}
+\end{align*}
+
+综上, 对于任意的 $n \in \mathbb{N}$ 和 $m \in \mathbb{N}^*$, $\operatorname{Exp} \numeral{n} \numeral{m} =_\beta \numeral{n^m}$.
+\end{solution}

@@ -1,0 +1,254 @@
+\begin{problem}
+设 $f : \N{} \to \N{}$ 满足
+\begin{align*}
+f(0) & = 1 \\
+f(1) & = 1 \\
+f(x + 2) & = f(x) + f(x + 1)
+\end{align*}
+证明:
+
+\begin{enumerate}
+    \item $f \in \PRF$
+    \item $f \in \EF$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+\item 
+% 根据 定理 1.48 串值递归, 构造以下无参串值递归
+% \begin{align*}
+% \omega_1(x) & = x \dotminus 1 \\
+% \omega_2(x) & = x \dotminus 2 \\
+% f(0) & = 1 \\
+% f(x + 1) & = b(x, f(\omega_1(x)), f(\omega_2(x))) \\
+% b(x, f(\omega_1(x)), f(\omega_2(x))) & = f(\omega_1(x)) + f(\omega_2(x)) \dotdotminus N(x) \\
+% & = f(x \dotminus 1) + f(x \dotminus 2) \dotdotminus N(x)
+% \end{align*}
+令 $g(n) = \langle f(n), f(n + 1) \rangle$
+\begin{align*}
+g(0) & = \langle f(0), f(1) \rangle = 2^1 \cdot 3^1 = 6 \\
+g(n + 1) & = \langle f(n + 1), f(n + 2) \rangle \\
+& = \langle f(n + 1), f(n) + f(n + 1) \rangle \\
+& = \langle ep_1(g(n)), ep_0(g(n)) + ep_1(g(n)) \rangle \\
+& = G(g(n))
+\end{align*}
+
+其中 $G(x) = \langle ep_1(x), ep_0(x) + ep_1(x) \rangle \in \PRF$, 因此 $f \in \PRF$.
+
+\item
+% 记 $f$ 的生成函数 $F = f_0 + f_1 z^1 + f_2 z^2 + \dots$.
+
+% 根据递推式, 有
+% \begin{align*}
+% F & = 1 + z F + z^2 F \\
+% F & = \frac{1}{1 - z - z^2} \\
+% F & = - \dfrac{1}{(z - \dfrac{1 + \sqrt{5}}{2})(z - \dfrac{1 - \sqrt{5}}{2})} \\
+% F & = \dfrac{1}{\sqrt{5}} (\dfrac{1}{z - \frac{1 + \sqrt{5}}{2}} - \dfrac{1}{z - \frac{1 - \sqrt{5}}{2}})
+% \end{align*}
+
+法一, 直接构造出具体的 $\EF$ 形式.
+
+有通项公式 $f(n) = \frac{1}{\sqrt{5}} \big ( (\frac{1 + \sqrt{5}}{2})^n + (\frac{1 - \sqrt{5}}{2})^n \big )$.
+
+上式在 $\mathcal{Q}[\sqrt{5}]$ 域上运算, 只需要求出它的有理系数.
+\begin{align*}
+f(n) & = (\sum_{i=0}^{\lfloor \frac{n-1}{2} \rfloor} {n \choose 2i+1} \sqrt{5}^{2i+1} + \sum_{i=0}^{\lfloor \frac{n-1}{2} \rfloor} {n \choose 2i+1} (-\sqrt{5})^{2i+1}) \Big / 2^n \sqrt{5} \\
+& = 2\sum_{i=0}^{\lfloor \frac{n-1}{2} \rfloor} {n \choose 2i+1} 5^{i} \Big / 2^n
+\end{align*}
+
+构造 $\EF$
+\[
+f(n) = \lfloor 2 \times \sum_{i=0}^n (rs(i, 2) \times {n \choose i} 5^{\lfloor i / 2 \rfloor}) \Big / 2^n \rfloor \in \EF
+\]
+
+其中组合数 ${n \choose m} = \dfrac{n!}{m!(n-m)!}$, $n! = \prod_{i=0}^n N(i) + i$, 因此 ${n \choose m} \in \EF$.
+
+\bigbreak
+
+法二, 利用定理 1.31 证明.
+
+\newtheorem*{remark}{定理}
+\begin{remark}
+设 $f : \N{} \to \N{} \in \EF$, $g : \N{3} \to \N{} \in \EF$. 设 $h : \N{2} \to \N{}$ 由以下递归式定义:
+\begin{align*}
+h(x, 0) & = f(x) \\
+h(x, y + 1) & = g(x, y, h(x, y))
+\end{align*}
+若存在 $b : \N{2} \to \N{} \in \EF$ 使得 $\forall x, y \in \N{}. h(x, y) \le b(x, y)$, 则 $h(x, y) \in \EF$.
+\end{remark}
+
+首先 $G(x) = \langle ep_1(x), ep_0(x) + ep_1(x) \rangle = 2^{ep_1(x)} \cdot 3^{ep_0(x) + ep_1(x)} \in \EF$.
+
+然后, $g(n) = \langle f(n), f(n + 1) \rangle = 2^{f(n)} \cdot 3^{f(n+1)}$. 通过数学归纳法可以证明 $f(n) \le 2^n$. 于是 $g(n) \le 2^{2^n} \cdot 3^{2^{n+1}}$. 又因为 $g'(n) = 2^{2^n} \cdot 3^{2^{n+1}} \in \EF$ 且 $g(n) \le g'(n)$, 因此根据定理 1.31 有 $g \in \EF$.
+
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设数论谓词 $Q(x,y,z,v)$ 定义为
+\[
+Q(x,y,z) = p(\langle x, y, z \rangle) \big | v
+\]
+其中 $p(n)$ 表示第 $n$ 个素数, $\langle x, y, z \rangle$ 是 $x,y,z$ 的哥德尔编码. 证明: $Q(x,y,z)$ 是初等的.
+\end{problem}
+
+\begin{solution}
+$\langle x, y, z \rangle = 2^x 3^y 5^z$ 和 $p(n)$ 都属于初等函数, 因此 $p(\langle x, y, z \rangle) \in \EF$. 于是 $Q(x, y, z, v) = N(rs(v, p(\langle x, y, z \rangle))) \in \EF$.
+\end{solution}
+
+\begin{problem}
+设 $f : \N{} \to \N{}$ 满足
+\begin{align*}
+f(0) & = 1 \\
+f(1) & = 4 \\
+f(2) & = 6 \\
+f(x + 3) & = f(x) + (f(x + 1))^2 + (f(x+2))^3
+\end{align*}
+证明: $f \in \PRF$.
+\end{problem}
+
+\begin{solution}
+\begin{align*}
+g(0) & = \langle 1, 4, 6 \rangle \\
+g(x + 1) & = \langle ep(1, G(x)), ep(2, G(x)), ep(0, G(x)) + (ep(1, G(x))^2 + (ep(2, G(x)))^3 ) \rangle \\
+f(x) & = ep(0, g(x)) \in \PRF
+\end{align*}
+\end{solution}
+
+\begin{problem}
+设 $f : \N{} \to \N{}$ 满足
+\begin{align*}
+f(0) & = 0 \\
+f(1) & = 1 \\
+f(2) & = 2^2 \\
+f(3) & = 3^{3^3} \\
+\vdots \\
+f(n) & = \underbrace{n^{{.}^{{.}^{{.}^{n}}}}}_{n ~ \text{个} ~ n}
+\end{align*}
+
+证明: $f \in \PRF - \EF$.
+\end{problem}
+
+\begin{solution}
+引入一个新函数 $g(m, n) = \underbrace{(m+n)^{{.}^{{.}^{{.}^{m+n}}}}}_{n ~ \text{个} ~ (m+n)}$, 于是 $f(n) = g(0, n)$.
+
+1. $g \in \PRF$.
+\begin{align*}
+g(m, 0) & = 0 = Z(m) \\
+g(m, n + 1) & = \underbrace{(m+n+1)^{{.}^{{.}^{{.}^{m+n+1}}}}}_{n+1 ~ \text{个} ~ (m+n+1)} \\
+& = (m + n + 1)^{g(m+1, n)} \\
+& = G(m, n, g(m + 1, n))
+\end{align*}
+其中 $G(x, y, z) = (x + y + 1)^z \in \PRF$.
+
+于是 $g \in \PRF$, 从而 $f \in \PRF$.
+
+2. $f \not\in \EF$.
+
+也就是证明 $f$ 不能被 $G(k, n)$ 控制.
+
+反证法. 假设 $f$ 被 $G$ 控制, 则存在 $k_0 \in \N{}$, 使得 $\forall n \in \N{}$, $f(n) \le G(k_0, n) = \underbrace{2^{{.}^{{.}^{{.}^{2^n}}}}}_{k_0 ~ \text{个} ~ 2}$.
+
+令 $n = k_0 + 2$, $f(n) = \underbrace{(k_0+2)^{{.}^{{.}^{{.}^{k_0+2}}}}}_{k_0+2 ~ \text{个} ~ k_0+2} > \underbrace{2^{{.}^{{.}^{{.}^{2^(k_0+2)}}}}}_{k_0 ~ \text{个} ~ 2}$.
+
+因此导出矛盾, 所以 $f \not\in \EF$.
+
+综上 $f \in \PRF - \EF$.
+\end{solution}
+
+\begin{problem}
+设 $g : \N{} \to \N{} \in \PRF$, $f : \N{2} \to \N{}$, 满足
+\begin{align*}
+f(x,0) & = g(x) \\
+f(x,y+1) & = f(f(\cdots f(f(x,y),y-1), \cdots), 0)
+\end{align*}
+
+证明: $f \in \PRF$.
+\end{problem}
+
+\begin{solution}
+使用数学归纳法证明 $f(x,y) = g^{2^{y - 1}}(x) = \operatorname{It}[g] (x, 2^{y - 1}) \in \PRF$.
+
+奠基: $f(x, 0) = g^{2^0} = g(x)$.
+
+归纳假设: $\forall 0 \le y \le k, f(x,y) = g^{2^{y}}(x)$.
+
+递推:
+\begin{align*}
+f(x,y+1) & = f(f(\cdots f(f(x,y),y-1), \cdots), 0) \\
+f(x,y+1) & = f(f(\cdots f(g^{2^{y-1}}(x),y-1), \cdots), 0) \\
+f(x,y+1) & = f(f(\cdots g^{2^{y-2}}(g^{2^{y-1}}(x)), \cdots), 0) \\
+& \dots \\
+f(x,y+1) & = g(g^{1}(\cdots g^{2^{y-1}}(g^{2^{y-1}}(x)))) \\
+f(x,y+1) & = g^{1 + 2^0 + 2^1 + \dots + 2^{y-1}}(x) \\
+f(x,y+1) & = g^{2^{y}}(x)
+\end{align*}
+
+因此, $f(x,y) = g^{2^{y - 1}}(x) = \operatorname{It}[g] (x, 2^{y - 1}) \in \PRF$.
+\end{solution}
+
+\begin{problem}
+设 $k \in \N{+}$, 函数 $f : \N{k} \to \N{}$ 和 $g: \N{k} \to \N{}$ 仅在有穷个点上取不同值, 证明: $f$ 为递归函数当且仅当 $g$ 为递归函数.
+\end{problem}
+
+\begin{solution}
+由于对称性, 只需要证明当 $g \in \GRF$ 时, $f \in \GRF$.
+
+设所有取值不同的点的有限集合 $S = \{ x_1, x_2, \dots, x_k \}$. 因此, 若 $x \in S$, $f(x)$ 的值已知, 否则 $x \not\in S$, $f(x) = g(x)$.
+\begin{align*}
+f(x) & = (f(x_1) \times N(x \dotdotminus x_1) + \dots + f(x_k) \times N(x \dotdotminus x_k)) \\
+& + N(N(x \dotdotminus x_1) + \dots + N(x \dotdotminus x_k)) \times g(x)
+\end{align*}
+因为 $S$ 是有限集合, 上述函数是可以被有限地构造出来的, 因此 $f \in \GRF$.
+\end{solution}
+
+\begin{problem}
+证明:
+
+\begin{enumerate}
+    \item $$
+f(n) = \Big \lfloor (\frac{\sqrt{5} + 1}{2}) n \Big \rfloor
+$$
+为初等函数.
+    \item $$
+f(n) = \Big \lfloor \big (\frac{\sqrt{5} + 1}{2} \big )^{n} \Big \rfloor
+$$
+为初等函数.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}
+\item 
+\begin{align*}
+f(n) & = \max_{x \le 2n} \bigg [ x \le \Big \lfloor (\frac{\sqrt{5} + 1}{2}) n \Big \rfloor \bigg ] \\
+f(n) & = \max_{x \le 2n} \bigg [ x^2 \dotminus nx \dotminus n^2 = 0 \bigg ] \\
+f(n) & = \max_{x \le 2n} \bigg [ N^2(x^2 \dotminus nx \dotminus n^2) \bigg ] \in \EF \\
+\end{align*}
+\item 
+构造函数 $h(n) = (\frac{\sqrt{5}+1}{2})^n + (\frac{1 - \sqrt{5}}{2})^n$, 易知 $h(1) = 1, h(2) = 3$.
+
+又注意到 
+\begin{align*}
+h(n + 1) + h(n) & = \frac{3 + \sqrt{5}}{2} (\frac{\sqrt{5} + 1}{2})^{n} + \frac{3 - \sqrt{5}}{2} (\frac{1 - \sqrt{5}}{2})^{n} \\
+& =(\frac{1 + \sqrt{5}}{2})^{n+2} + (\frac{1 - \sqrt{5}}{2})^{n+2} \\
+& = h(n + 2)
+\end{align*}
+
+实际上, $h$ 就是 Fibonacci 数列, 根据 题目 1.13 易知 $h \in \EF$.
+
+因为 $\big |(\frac{1 - \sqrt{5}}{2})^{n} \big | < 1$, 且 $n$ 为偶数时 $(\frac{1 - \sqrt{5}}{2})^{n}$ 否则其 $< 0$. 因此
+
+\[
+h(n) = \begin{cases}(\frac{\sqrt{5}+1}{2})^n & n ~ \text{为奇数} \\
+(\frac{\sqrt{5}+1}{2})^n + 1 & n ~ \text{为偶数} \\
+\end{cases}
+\]
+
+所以
+\[
+f(n) = h(n) \dotminus N(rs(n, 2)) \in \EF
+\]
+\end{enumerate}
+\end{solution}

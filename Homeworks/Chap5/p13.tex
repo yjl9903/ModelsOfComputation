@@ -1,0 +1,24 @@
+\begin{problem}
+证明: $\text{S} = \{ a_1, a_2, \dots, a_k \}$ 是 Turing-可计算的.
+\end{problem}
+
+\begin{solution}
+记 $K = \max S$, 构造一个拥有 $K + 4$ 个状态的机器. 对于 $0 \le i \le K$, 状态 $i + 2$ 表示已经连续读到了 $i+1$ 个 $1$, 若此时被读项为 $0$ 则输入结束, 读取到了输入数字为 $i$, 如果 $i \in S$ 那么进入成功分支, 否则进入失败分支; 若此时被读项为 $1$ 则继续向右扫描, 直到扫描到 $K+1$ 进入失败分支. 下表 \ref{sol:5.13} 为机器示例.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{@{}Y|Y|Y@{}} \hhline
+          & 0   & 1   \\ \hline
+        1 &     & 0R2 \\ \hline
+        \dots & \dots & \dots \\ \hline
+        $i+2$ & 1R($K+5$) ~ ($i \in S$) & 0R($i+3$) \\ \hline
+        \dots & \dots & \dots \\ \hline
+        $j+2$ & 0R($K+3$) ~ ($j \not\in S$) & 0R($j+3$) \\ \hline
+        \dots & \dots & \dots \\ \hline
+        $K+3$ & 1R($K+4$) & 0R($K+3$) \\ \hline
+        $K+4$ & 1R($K+5$) &  \\ \hhline
+    \end{tabularx}
+    \caption{解答 5.13}
+    \label{sol:5.13}
+\end{table}
+\end{solution}

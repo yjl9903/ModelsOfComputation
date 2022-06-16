@@ -1,0 +1,17 @@
+\begin{problem}
+试找出 $A \in \Lambda^\circ$ 使 $A$ $\lambda-$ 定义函数 $f(x)=3x$.
+\end{problem}
+
+\begin{solution}
+$A \equiv \lambdabstract{xfz}{xf(xf(xfz))}$, 于是
+\begin{align*}
+A \numeral{n} & \equiv (\lambdabstract{xfz}{xf(xf(xfz))}) \numeral{n} \\
+& =_\beta \lambdabstract{fz}{\numeral{n}f(\numeral{n}f(\numeral{n}fz))} \\
+& =_\beta \lambdabstract{fz}{f^n(\numeral{n}f(\numeral{n}fz))} \\
+& =_\beta \lambdabstract{fz}{f^n(f^n(\numeral{n}fz))} \\
+& =_\beta \lambdabstract{fz}{f^n(f^n(f^nz))} \\
+& = \lambdabstract{fz}{(f^{3n} z)} \\
+& = \numeral{3n}
+\end{align*}
+所以 $A$ $\lambda-$ 定义函数 $f(x)=3x$.
+\end{solution}

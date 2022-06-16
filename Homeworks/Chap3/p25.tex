@@ -1,0 +1,18 @@
+\begin{problem}
+证明: 存在 $\Theta_2 \in \Lambda^\circ$, 使得对于任意 $F \in \Lambda^\circ$, 有
+\[
+\Theta_2 \numeral{F} =_\beta F \numeral{\Theta_2 \numeral{F}}
+\]
+\end{problem}
+
+\begin{solution}
+令 $W \equiv \lambdabstract{xy}{E y (\operatorname{App} (\operatorname{App} x (\operatorname{Num} x)) (\operatorname{Num} y))}$, $\Theta_2 \equiv W \numeral{W}$, 这里 $E$ 为枚举子, 从而对于 $F \in \Lambda^\circ, E \numeral{F} = F$.
+\begin{align*}
+\Theta_2 \numeral{F} & = W \numeral{W} \numeral{F} \\
+& = E \numeral{F} (\operatorname{App} (\operatorname{App} \numeral{W} (\operatorname{Num} \numeral{W})) (\operatorname{Num} \numeral{F})) \\
+& = F (\operatorname{App} (\operatorname{App} \numeral{W} \numeral{\numeral{W}}) \numeral{\numeral{F}}) \\
+& = F \operatorname{App} \numeral{W \numeral{W}} \numeral{\numeral{F}} \\
+& = F \numeral{\Theta_2 \numeral{F}}
+\end{align*}
+\end{solution}
+
